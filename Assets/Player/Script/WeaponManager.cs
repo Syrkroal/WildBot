@@ -5,21 +5,28 @@ using UnityEngine;
 public class WeaponManager : MonoBehaviour
 {
     public GameObject projectile;
-    private float fireRate = 2;
-    private float nextFire;
-    // Start is called before the first frame update
+    public GameObject weapon;
+    public Transform recoilStart;
+    public Transform recoilBack;
+
+    public float fireRate = 0.2f;
+    private float nextFire = 0;
+    public float recoilSpeed = 1f;
+    public float recoilLaps = 0.05f;
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0))
         {
             Fire(transform.forward, transform.position);
         }
+        if (Time.time < (nextFire + recoilLaps - fireRate))
+            doRecoil();
+        replaceWeapon();
     }
 
     public void Fire(Vector3 direction, Vector3 spawnPos)
@@ -28,8 +35,17 @@ public class WeaponManager : MonoBehaviour
         {
             nextFire = Time.time + fireRate;
             GameObject go = Instantiate(projectile, spawnPos, Quaternion.identity);
-            go.GetComponent<Projectile>().setDirection(direction);
+            go.GetComponent<ProjectilePlayer>().setDirection(direction);
         }
     }
 
+    public void doRecoil()
+    {
+        transform.position = Vector3.MoveTowards(transform.position, recoilBack.position, Time.deltaTime * recoilSpeed);
+    }
+
+    public void replaceWeapon()
+    {
+        transform.position = Vector3.MoveTowards(transform.position, recoilStart.position, Time.deltaTime * recoilSpeed / 2);
+    }
 }

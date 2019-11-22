@@ -52,11 +52,9 @@ public class PlayerControl : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            print("Hit");
         }
         if (collision.gameObject.CompareTag("Ground"))
         {
-            print("t bon");
             onGround = true;
         }
     }
