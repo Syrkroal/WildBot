@@ -25,5 +25,7 @@ public class Projectile : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
             print("hit");
+        if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Wall"))
+            Destroy(gameObject);
     }
 }

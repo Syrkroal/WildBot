@@ -5,10 +5,8 @@ using UnityEngine.AI;
 
 public class Patrol : MonoBehaviour
 {
-    public Transform[] points;
     private int destPoint = 0;
     private NavMeshAgent agent;
-    private GroundEnemyMovement movement;
     public Transform player;
     private Transform myTransform;
     public float range = 5;
@@ -23,15 +21,14 @@ public class Patrol : MonoBehaviour
     void Start ()
     {
         agent = GetComponent<NavMeshAgent>();
-        movement = GetComponent<GroundEnemyMovement>();
         attack = GetComponent<EnemyAttack>();
         boxCollider = GetComponent<BoxCollider>();
         anim = GetComponent<Animator>();
         myTransform = transform;
-        agent.autoBraking = false;
+        // agent.autoBraking = false;
         rotStep = rotationSpeed * Time.deltaTime;
 
-        GotoNextPoint();
+        // GotoNextPoint();
     }
 
     private IEnumerator PlayAnimation(string animName) {
@@ -54,15 +51,15 @@ public class Patrol : MonoBehaviour
         agent.isStopped = false;
     }
 
-    private void GotoNextPoint() {
-        StartCoroutine(PlayAnimation("Idle"));
-        if (points.Length == 0)
-            return;
+    // private void GotoNextPoint() {
+    //     StartCoroutine(PlayAnimation("Idle"));
+    //     if (points.Length == 0)
+    //         return;
 
-        agent.destination = points[destPoint].position;
-        destPoint = (destPoint + 1) % points.Length;
-        agent.isStopped = false;
-    }
+    //     agent.destination = points[destPoint].position;
+    //     destPoint = (destPoint + 1) % points.Length;
+    //     agent.isStopped = false;
+    // }
 
     void Update() {
         if (!animationIsPlaying) {
@@ -93,11 +90,18 @@ public class Patrol : MonoBehaviour
                     agent.SetDestination(player.position);
                 }
             }
-            else
-            {
-                if (!agent.pathPending && agent.remainingDistance < 0.5f)
-                    GotoNextPoint();
-            }
+            agent.SetDestination(player.position);
+            // else
+            // {
+            //     if (!agent.pathPending && agent.remainingDistance < 0.5f)
+            //         GotoNextPoint();
+            // }
         }
+    }
+
+    public void SetPlayer(Transform posPlayer)
+    {
+        player = posPlayer;
+        // agent.SetDestination(player.position);
     }
 }

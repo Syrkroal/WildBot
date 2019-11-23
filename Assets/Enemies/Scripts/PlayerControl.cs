@@ -27,7 +27,11 @@ public class PlayerControl : MonoBehaviour {
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Enemy")) {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            EnemyHealth enemyHealth = collision.gameObject.GetComponent<EnemyHealth>();
+            if (enemyHealth)
+                enemyHealth.TakeDamage(1);
             print("Hit");
         }
     }
