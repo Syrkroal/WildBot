@@ -4,22 +4,23 @@ using System.Collections;
 public class PlayerControl : MonoBehaviour
 {
     public float speed = 40;
-    private Rigidbody rigidBody;
+    public Rigidbody Rigid;
     private float x_min;
     private float x_max;
     private float z_min;
     private float z_max;
 
     private bool onGround;
-
+    public float JumpForce;
     public float mouseSpeed = 4.0f;
 
     private float yaw = 0.0f;
     private float pitch = 0.0f;
     void Awake()
     {
-        rigidBody = GetComponent<Rigidbody>();
+        Rigid = GetComponent<Rigidbody>();
     }
+
     void Update()
     {
         KeyboardMovement();
@@ -29,12 +30,11 @@ public class PlayerControl : MonoBehaviour
 
     private void KeyboardMovement()
     {
-        float xMove = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
-        float zMove = Input.GetAxis("Vertical") * speed * Time.deltaTime;
-        float xSpeed = xMove * speed;
-        float zSpeed = zMove * speed;
-        Vector3 newVelocity = new Vector3(xSpeed, rigidBody.velocity.y, zSpeed);
-        rigidBody.velocity = newVelocity;
+        Rigid.MoveRotation(Rigid.rotation * Quaternion.Euler(new Vector3(0, Input.GetAxis("Mouse X") * mouseSpeed, 0)));
+        Rigid.MoveRotation(Rigid.rotation * Quaternion.Euler(new Vector3(0, Input.GetAxis("Mouse Y") * mouseSpeed, 0)));
+        Rigid.MovePosition(transform.position + (transform.forward * Input.GetAxis("Vertical") * speed) + (transform.right * Input.GetAxis("Horizontal") * speed));
+        if (Input.GetKeyDown("space"))
+            Rigid.AddForce(transform.up * JumpForce);
     }
 
     private void JumpEvent()
@@ -42,8 +42,8 @@ public class PlayerControl : MonoBehaviour
         if (Input.GetButtonDown("Jump") && onGround)
         {
             onGround = false;
-            Vector3 newVelocity = new Vector3(rigidBody.velocity.x, rigidBody.velocity.y + 3, rigidBody.velocity.z);
-            rigidBody.velocity = newVelocity;
+            Vector3 newVelocity = new Vector3(Rigid.velocity.x, Rigid.velocity.y + 3, Rigid.velocity.z);
+            Rigid.velocity = newVelocity;
         }
 
     }

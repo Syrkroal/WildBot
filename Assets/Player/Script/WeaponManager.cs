@@ -41,11 +41,14 @@ public class WeaponManager : MonoBehaviour
 
     public void doRecoil()
     {
-        transform.position = Vector3.MoveTowards(transform.position, recoilBack.position, Time.deltaTime * recoilSpeed);
+        print("ok");
+        weapon.transform.position = Vector3.MoveTowards(weapon.transform.position, recoilBack.position, Time.deltaTime * recoilSpeed);
     }
 
     public void replaceWeapon()
     {
-        transform.position = Vector3.MoveTowards(transform.position, recoilStart.position, Time.deltaTime * recoilSpeed / 2);
+        print("-----------");
+
+        weapon.transform.position = Vector3.MoveTowards(weapon.transform.position, recoilStart.position, Time.deltaTime * recoilSpeed / 2);
     }
 }
