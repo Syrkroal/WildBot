@@ -23,7 +23,14 @@ public class ProjectilePlayer : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
-            print("hit");
+        if (other.gameObject.CompareTag("Ground") || other.gameObject.CompareTag("Wall"))
+            Destroy(gameObject);
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            EnemyHealth enemyHealth = other.gameObject.GetComponent<EnemyHealth>();
+            if (enemyHealth)
+                enemyHealth.TakeDamage(1);
+            Destroy(gameObject);
+        }
     }
 }

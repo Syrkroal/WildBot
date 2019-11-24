@@ -59,6 +59,14 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
+    void OnTriggerEnter(Collider collider)
+    {
+        if (collider.gameObject.CompareTag("Item"))
+        {
+            Destroy(collider.gameObject);
+        }
+    }
+
     void MoveCamera()
     {
         yaw += mouseSpeed * Input.GetAxis("Mouse X");

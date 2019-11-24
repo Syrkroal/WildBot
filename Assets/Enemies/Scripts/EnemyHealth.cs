@@ -10,12 +10,13 @@ public class EnemyHealth : MonoBehaviour
     private Animator anim;
     private Material oldMaterial;
     private bool takingDamage = false;
-    private SkinnedMeshRenderer renderer;
+    private SkinnedMeshRenderer childRenderer;
 
     void Start() {
         anim = GetComponent<Animator>();
-        renderer = GetComponentInChildren<SkinnedMeshRenderer>();
-        oldMaterial = renderer.material;
+        childRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
+        if  (childRenderer)
+            oldMaterial = childRenderer.material;
     }
 
     private IEnumerator PlayAnimation(string animName)
@@ -36,7 +37,9 @@ public class EnemyHealth : MonoBehaviour
         // }
         // Color color = renderer.material.color;
         // renderer.material.color = color;
-        renderer.material.SetColor("_Color", new Color(255, 0, 0, 1));
+        if (childRenderer) {
+            childRenderer.material.SetColor("_Color", new Color(255, 0, 0, 1));
+        }
         takingDamage = true;
         // oldMaterial = hitMaterial;
     }
