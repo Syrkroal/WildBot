@@ -38,4 +38,10 @@ public class PlayerManager : MonoBehaviour
         print(bullets);
         return bullets;
     }
+
+    public void reload(int loaderSize, int bullets)
+    {
+        ammo -= (loaderSize - bullets);
+        print(ammo);
+    }
 }

@@ -6,6 +6,7 @@ public class WeaponManager : MonoBehaviour
 {
     public GameObject projectile;
     public GameObject weapon;
+    private GameObject Player;
     public Transform recoilStart;
     public Transform recoilBack;
 
@@ -19,6 +20,7 @@ public class WeaponManager : MonoBehaviour
     void Start()
     {
         bulletInLoader = loaderSize;
+        //Player = transform.GetComponent<PlayerManager>();
     }
 
     void Update()
@@ -29,6 +31,11 @@ public class WeaponManager : MonoBehaviour
         }
         if (Time.time < (nextFire + recoilLaps - fireRate))
             doRecoil();
+        if (Input.GetKey(KeyCode.R))
+        {
+            transform.GetComponent<PlayerManager>().reload(loaderSize, bulletInLoader);
+            bulletInLoader = loaderSize;
+        }
         replaceWeapon();
     }
 
