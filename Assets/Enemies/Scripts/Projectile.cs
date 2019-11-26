@@ -6,7 +6,9 @@ public class Projectile : MonoBehaviour
 {
     public float speed = 1;
     public float timer = 2;
+    public int damage = 1;
     private Rigidbody rigidBody;
+
     void Start()
     {
         rigidBody = GetComponent<Rigidbody>();
@@ -23,7 +25,14 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+
         if (other.gameObject.CompareTag("Player"))
-            print("hit");
+        {
+            print("ok");
+            PlayerManager player = other.gameObject.GetComponent<PlayerManager>();
+            player.hitPlayer(damage);
+        }
+        if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Wall") || other.gameObject.CompareTag("Ground"))
+            Destroy(gameObject);
     }
 }

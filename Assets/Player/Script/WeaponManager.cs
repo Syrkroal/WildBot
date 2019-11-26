@@ -13,9 +13,12 @@ public class WeaponManager : MonoBehaviour
     private float nextFire = 0;
     public float recoilSpeed = 1f;
     public float recoilLaps = 0.05f;
+    public int loaderSize = 20;
+    private int bulletInLoader;
+
     void Start()
     {
-        
+        bulletInLoader = loaderSize;
     }
 
     void Update()
@@ -33,9 +36,13 @@ public class WeaponManager : MonoBehaviour
     {
         if (Time.time > nextFire)
         {
-            nextFire = Time.time + fireRate;
-            GameObject go = Instantiate(projectile, spawnPos, Quaternion.identity);
-            go.GetComponent<ProjectilePlayer>().setDirection(direction);
+            bulletInLoader = transform.GetComponent<PlayerManager>().shootAmmo(bulletInLoader);
+            if (bulletInLoader > 0)
+            {
+                nextFire = Time.time + fireRate;
+                GameObject go = Instantiate(projectile, spawnPos, Quaternion.identity);
+                go.GetComponent<ProjectilePlayer>().setDirection(direction);
+            }
         }
     }
 
