@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
-    public int life = 5;
+    public int currentLife = 10;
+    public int maxLife = 10;
+
     public int ammo = 100;
 
     void Start()
@@ -17,11 +19,31 @@ public class PlayerManager : MonoBehaviour
 
     }
 
-    public void hitPlayer(int damage)
+    void OnCollisionEnter(Collision collision)
     {
-        life -= damage;
-        print(life);
-        if (life <= 0)
+        print("hmmmm");
+
+        if (collision.gameObject.CompareTag("Item"))
+        {
+            print("ok");
+            if (collision.gameObject.GetComponent<ItemType>().itemType == ItemType.type.Ammo)
+            {
+                ammo += (int)collision.gameObject.GetComponent<ItemType>().rate;
+                print(collision.gameObject.GetComponent<ItemType>().rate);
+            }
+            if (collision.gameObject.GetComponent<ItemType>().itemType == ItemType.type.Health)
+            {
+                currentLife += (int)collision.gameObject.GetComponent<ItemType>().rate;
+                if (currentLife > maxLife) currentLife = maxLife;
+            }
+        }
+    }
+
+        public void hitPlayer(int damage)
+    {
+        currentLife -= damage;
+        print(currentLife);
+        if (currentLife <= 0)
             playerDead();
     }
 

@@ -39,6 +39,7 @@ public class WeaponManager : MonoBehaviour
         replaceWeapon();
     }
 
+
     public void Fire(Vector3 direction, Vector3 spawnPos)
     {
         if (Time.time > nextFire)
