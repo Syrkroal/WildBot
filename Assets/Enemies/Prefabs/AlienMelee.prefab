@@ -798,8 +798,10 @@ GameObject:
   - component: {fileID: 5448202067816226869}
   - component: {fileID: 5448202067816226868}
   - component: {fileID: 5448202067816226875}
+  - component: {fileID: -3610146580305565765}
+  - component: {fileID: 2686018779614579041}
   m_Layer: 0
-  m_Name: prefMelee
+  m_Name: AlienMelee
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -926,13 +928,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7aff77f092a2f9447a93a3273e4a356d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  points:
-  - {fileID: 0}
-  - {fileID: 0}
   player: {fileID: 0}
   range: 5
-  attackRange: 3
+  attackRange: 4
   rotationSpeed: 3
+--- !u!114 &-3610146580305565765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5449192201659357324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ca451a73fbcf1c4798924fa27dd5d70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthPoints: 5
+  deathPlaying: 0
+  hitMaterial: {fileID: 0}
+--- !u!114 &2686018779614579041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5449192201659357324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c2e8dc1f872b5b4d9e8d30fc4c561a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  items:
+  - {fileID: 635800190882277384, guid: d400177945053f94db8e225ed2b17e21, type: 3}
+  - {fileID: 3118218443897953589, guid: 68666924a3739454886a718f2e869dd5, type: 3}
+  height: 2
 --- !u!1 &5449200691993267866
 GameObject:
   m_ObjectHideFlags: 0
