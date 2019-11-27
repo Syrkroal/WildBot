@@ -19,6 +19,9 @@ public class Follow : MonoBehaviour
         boxCollider = GetComponent<BoxCollider>();
         myTransform = transform;
         rotStep = rotationSpeed * Time.deltaTime;
+        if (!player) {
+            player = GameObject.FindWithTag("Player").transform;
+        }
     }
 
     void Update()

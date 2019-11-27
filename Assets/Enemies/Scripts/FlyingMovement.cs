@@ -25,6 +25,10 @@ public class FlyingMovement : MonoBehaviour
         initialPos = myTransform.position;
         moveStep = speed * Time.deltaTime;
         rotStep = rotationSpeed * Time.deltaTime;
+        if (!player)
+        {
+            player = GameObject.FindWithTag("Player").transform;
+        }
     }
     void FixedUpdate() {
         AIMovement();
