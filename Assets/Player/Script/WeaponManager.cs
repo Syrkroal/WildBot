@@ -6,6 +6,7 @@ public class WeaponManager : MonoBehaviour
 {
     public GameObject projectile;
     public GameObject weapon;
+    private GameObject Player;
     public Transform recoilStart;
     public Transform recoilBack;
 
@@ -13,9 +14,14 @@ public class WeaponManager : MonoBehaviour
     private float nextFire = 0;
     public float recoilSpeed = 1f;
     public float recoilLaps = 0.05f;
+    public int loaderSize = 20;
+    public float damage = 1.0f;
+    private int bulletInLoader;
+
     void Start()
     {
-        
+        bulletInLoader = loaderSize;
+        //Player = transform.GetComponent<PlayerManager>();
     }
 
     void Update()
@@ -26,16 +32,26 @@ public class WeaponManager : MonoBehaviour
         }
         if (Time.time < (nextFire + recoilLaps - fireRate))
             doRecoil();
+        if (Input.GetKey(KeyCode.R))
+        {
+            transform.GetComponent<PlayerManager>().reload(loaderSize, bulletInLoader);
+            bulletInLoader = loaderSize;
+        }
         replaceWeapon();
     }
+
 
     public void Fire(Vector3 direction, Vector3 spawnPos)
     {
         if (Time.time > nextFire)
         {
-            nextFire = Time.time + fireRate;
-            GameObject go = Instantiate(projectile, spawnPos, Quaternion.identity);
-            go.GetComponent<ProjectilePlayer>().setDirection(direction);
+            bulletInLoader = transform.GetComponent<PlayerManager>().shootAmmo(bulletInLoader);
+            if (bulletInLoader > 0)
+            {
+                nextFire = Time.time + fireRate;
+                GameObject go = Instantiate(projectile, spawnPos, Quaternion.identity);
+                go.GetComponent<ProjectilePlayer>().setDirection(direction);
+            }
         }
     }
 

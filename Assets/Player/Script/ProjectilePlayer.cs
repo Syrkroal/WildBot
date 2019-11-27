@@ -6,11 +6,15 @@ public class ProjectilePlayer : MonoBehaviour
 {
     public float speed = 1;
     public float timer = 2;
+    private float damage;
     private Rigidbody rigidBody;
+    public GameObject Owner;
     void Start()
     {
         rigidBody = GetComponent<Rigidbody>();
         Destroy(gameObject, timer);
+        Owner = GameObject.FindGameObjectWithTag("Player");
+        damage = Owner.GetComponent<WeaponManager>().damage;
     }
 
     public void setDirection(Vector3 direction) {
@@ -29,7 +33,7 @@ public class ProjectilePlayer : MonoBehaviour
         {
             EnemyHealth enemyHealth = other.gameObject.GetComponent<EnemyHealth>();
             if (enemyHealth)
-                enemyHealth.TakeDamage(1);
+                enemyHealth.TakeDamage(damage);
             Destroy(gameObject);
         }
     }
