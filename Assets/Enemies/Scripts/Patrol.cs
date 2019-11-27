@@ -27,7 +27,10 @@ public class Patrol : MonoBehaviour
         myTransform = transform;
         // agent.autoBraking = false;
         rotStep = rotationSpeed * Time.deltaTime;
-
+        if (!player)
+        {
+            player = GameObject.FindWithTag("Player").transform;
+        }
         // GotoNextPoint();
     }
 
