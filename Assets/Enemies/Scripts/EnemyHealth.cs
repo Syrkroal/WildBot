@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
-    public int healthPoints = 3;
+    public float healthPoints = 3;
     public bool deathPlaying = false;
     public Material hitMaterial;
     private Animator anim;
@@ -28,7 +28,7 @@ public class EnemyHealth : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void TakeDamage(int damage) {
+    public void TakeDamage(float damage) {
         healthPoints -= damage;
         // renderer.material = hitMaterial;
         // for (var i = 0; i < renderer.materials.Length; i++)

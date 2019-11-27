@@ -6,7 +6,6 @@ public class PlayerManager : MonoBehaviour
 {
     public int currentLife = 10;
     public int maxLife = 10;
-
     public int ammo = 100;
 
     void Start()
@@ -19,23 +18,20 @@ public class PlayerManager : MonoBehaviour
 
     }
 
-    void OnCollisionEnter(Collision collision)
+    void OnTriggerEnter(Collider collision)
     {
-        print("hmmmm");
-
         if (collision.gameObject.CompareTag("Item"))
         {
-            print("ok");
             if (collision.gameObject.GetComponent<ItemType>().itemType == ItemType.type.Ammo)
             {
                 ammo += (int)collision.gameObject.GetComponent<ItemType>().rate;
-                print(collision.gameObject.GetComponent<ItemType>().rate);
             }
             if (collision.gameObject.GetComponent<ItemType>().itemType == ItemType.type.Health)
             {
                 currentLife += (int)collision.gameObject.GetComponent<ItemType>().rate;
                 if (currentLife > maxLife) currentLife = maxLife;
             }
+            Destroy(collision.gameObject);
         }
     }
 

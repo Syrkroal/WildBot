@@ -2510,6 +2510,7 @@ MonoBehaviour:
   recoilSpeed: 4
   recoilLaps: 0.1
   loaderSize: 20
+  damage: 1
 --- !u!114 &2044606948
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2522,7 +2523,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8b3fc0ffda2b264bb9703c5c6baa020, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  life: 5
+  currentLife: 10
+  maxLife: 10
   ammo: 100
 --- !u!1 &2071566217 stripped
 GameObject:

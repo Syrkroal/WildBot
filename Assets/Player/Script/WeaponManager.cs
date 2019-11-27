@@ -15,6 +15,7 @@ public class WeaponManager : MonoBehaviour
     public float recoilSpeed = 1f;
     public float recoilLaps = 0.05f;
     public int loaderSize = 20;
+    public float damage = 1.0f;
     private int bulletInLoader;
 
     void Start()
