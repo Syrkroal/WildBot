@@ -28,7 +28,7 @@ public class WeaponManager : MonoBehaviour
     {
         if (Input.GetMouseButton(0))
         {
-            Fire(transform.forward, transform.position);
+            Fire(transform.forward, weapon.transform.position);
         }
         if (Time.time < (nextFire + recoilLaps - fireRate))
             doRecoil();
