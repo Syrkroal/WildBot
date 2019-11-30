@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PlayerControl : MonoBehaviour
 {
-    public float speed = 40;
+    public float speed = 0.2f;
     public Rigidbody Rigid;
     private float x_min;
     private float x_max;
@@ -30,8 +30,10 @@ public class PlayerControl : MonoBehaviour
 
     private void KeyboardMovement()
     {
-        Rigid.MoveRotation(Rigid.rotation * Quaternion.Euler(new Vector3(0, Input.GetAxis("Mouse X") * mouseSpeed, 0)));
-        Rigid.MoveRotation(Rigid.rotation * Quaternion.Euler(new Vector3(0, Input.GetAxis("Mouse Y") * mouseSpeed, 0)));
+        //Rigid.MoveRotation(Rigid.rotation * Quaternion.Euler(new Vector3(0, Input.GetAxis("Mouse X") * mouseSpeed, 0)));
+        //Rigid.MoveRotation(Rigid.rotation * Quaternion.Euler(new Vector3(0, Input.GetAxis("Mouse Y") * mouseSpeed, 0)));
+        float tmpSpeed = speed;
+        if (Input.GetAxis("Vertical") > 0 && Input.GetAxis("Horizontal") > 0) tmpSpeed = speed / 2;
         Rigid.MovePosition(transform.position + (transform.forward * Input.GetAxis("Vertical") * speed) + (transform.right * Input.GetAxis("Horizontal") * speed));
         if (Input.GetKeyDown("space"))
             Rigid.AddForce(transform.up * JumpForce);
