@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class WeaponManager : MonoBehaviour
 {
@@ -26,7 +24,6 @@ public class WeaponManager : MonoBehaviour
     void Start()
     {
         bulletInLoader = loaderSize;
-        //Player = transform.GetComponent<PlayerManager>();
     }
 
     void Update()
@@ -79,13 +76,11 @@ public class WeaponManager : MonoBehaviour
 
     public void GotoPreciseView()
     {
-        print("oui");
         parentWeapon.transform.position = Vector3.MoveTowards(parentWeapon.transform.position, PreciseShoot.position, Time.deltaTime * lockViewSpeed);
     }
 
     public void GotoNormalView()
     {
-        print("oui");
         parentWeapon.transform.position = Vector3.MoveTowards(parentWeapon.transform.position, NormalShoot.position, Time.deltaTime * lockViewSpeed);
     }
 }

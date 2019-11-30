@@ -53,7 +53,6 @@ public class PlayerManager : MonoBehaviour
         if (bullets <= 0)
             return 0;
         bullets--;
-        print(bullets);
         return bullets;
     }
 

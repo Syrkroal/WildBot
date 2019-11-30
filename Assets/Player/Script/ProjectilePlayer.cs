@@ -7,8 +7,11 @@ public class ProjectilePlayer : MonoBehaviour
     public float speed = 1;
     public float timer = 2;
     private float damage;
+    public GameObject DisplayDamage;
     private Rigidbody rigidBody;
-    public GameObject Owner;
+    private GameObject Owner;
+
+
     void Start()
     {
         rigidBody = GetComponent<Rigidbody>();
@@ -34,6 +37,9 @@ public class ProjectilePlayer : MonoBehaviour
             EnemyHealth enemyHealth = other.gameObject.GetComponent<EnemyHealth>();
             if (enemyHealth)
                 enemyHealth.TakeDamage(damage);
+
+            GameObject damageText = Instantiate(DisplayDamage, transform.position, Quaternion.identity);
+            //damageText.GetComponent<DamageDisplay>().set;
             Destroy(gameObject);
         }
     }
