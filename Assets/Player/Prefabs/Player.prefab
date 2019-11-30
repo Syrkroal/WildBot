@@ -199,7 +199,7 @@ MonoBehaviour:
   recoilSpeed: 4
   recoilLaps: 0.1
   loaderSize: 20
-  damage: 1
+  damage: 10
   lockViewSpeed: 1.5
 --- !u!114 &672205807490058031
 MonoBehaviour:

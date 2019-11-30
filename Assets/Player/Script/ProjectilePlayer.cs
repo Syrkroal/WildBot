@@ -7,10 +7,10 @@ public class ProjectilePlayer : MonoBehaviour
     public float speed = 1;
     public float timer = 2;
     private float damage;
-    public GameObject DisplayDamage;
     private Rigidbody rigidBody;
     private GameObject Owner;
-
+    private GameObject canvas;
+    public GameObject DisplayDamage;
 
     void Start()
     {
@@ -18,6 +18,9 @@ public class ProjectilePlayer : MonoBehaviour
         Destroy(gameObject, timer);
         Owner = GameObject.FindGameObjectWithTag("Player");
         damage = Owner.GetComponent<WeaponManager>().damage;
+        canvas = GameObject.Find("Canvas");
+       /* if (!DisplayDamage)
+            DisplayDamage = Resources.Load<DamageDisplay>("UI/Prefabs/parentDamage.prefab");*/
     }
 
     public void setDirection(Vector3 direction) {
@@ -37,10 +40,18 @@ public class ProjectilePlayer : MonoBehaviour
             EnemyHealth enemyHealth = other.gameObject.GetComponent<EnemyHealth>();
             if (enemyHealth)
                 enemyHealth.TakeDamage(damage);
-
-            GameObject damageText = Instantiate(DisplayDamage, transform.position, Quaternion.identity);
+            creatFloatingText(damage.ToString(), transform);
+            //GameObject damageText = Instantiate(DisplayDamage);
             //damageText.GetComponent<DamageDisplay>().set;
             Destroy(gameObject);
         }
+    }
+
+    private void creatFloatingText(string Text, Transform pos)  
+    {
+        GameObject instance = Instantiate(DisplayDamage);
+
+        instance.transform.SetParent(canvas.transform, false);
+        instance.GetComponent<DamageDisplay>().setText(Text);
     }
 }

@@ -108,7 +108,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 80
   timer: 4
-  DisplayDamage: {fileID: 7508319077468931309, guid: a6289656604f112418200500ee22c6a7,
+  DisplayDamage: {fileID: 5951339222574937646, guid: 0f3104d1d783ba443af42123b88e727b,
     type: 3}
 --- !u!54 &-4383204100260455944
 Rigidbody:
