@@ -6,9 +6,12 @@ public class WeaponManager : MonoBehaviour
 {
     public GameObject projectile;
     public GameObject weapon;
+    public GameObject parentWeapon;
     private GameObject Player;
     public Transform recoilStart;
     public Transform recoilBack;
+    public Transform NormalShoot;
+    public Transform PreciseShoot;
 
     public float fireRate = 0.2f;
     private float nextFire = 0;
@@ -17,6 +20,8 @@ public class WeaponManager : MonoBehaviour
     public int loaderSize = 20;
     public float damage = 1.0f;
     private int bulletInLoader;
+
+    public float lockViewSpeed = 1.5f;
 
     void Start()
     {
@@ -38,6 +43,13 @@ public class WeaponManager : MonoBehaviour
             bulletInLoader = loaderSize;
         }
         replaceWeapon();
+
+        if (Input.GetMouseButton(1))
+        {
+            GotoPreciseView();
+        }
+        else
+            GotoNormalView();
     }
 
 
@@ -63,5 +75,17 @@ public class WeaponManager : MonoBehaviour
     public void replaceWeapon()
     {
         weapon.transform.position = Vector3.MoveTowards(weapon.transform.position, recoilStart.position, Time.deltaTime * recoilSpeed / 2);
+    }
+
+    public void GotoPreciseView()
+    {
+        print("oui");
+        parentWeapon.transform.position = Vector3.MoveTowards(parentWeapon.transform.position, PreciseShoot.position, Time.deltaTime * lockViewSpeed);
+    }
+
+    public void GotoNormalView()
+    {
+        print("oui");
+        parentWeapon.transform.position = Vector3.MoveTowards(parentWeapon.transform.position, NormalShoot.position, Time.deltaTime * lockViewSpeed);
     }
 }
