@@ -19,8 +19,6 @@ public class ProjectilePlayer : MonoBehaviour
         Owner = GameObject.FindGameObjectWithTag("Player");
         damage = Owner.GetComponent<WeaponManager>().damage;
         canvas = GameObject.Find("Canvas");
-       /* if (!DisplayDamage)
-            DisplayDamage = Resources.Load<DamageDisplay>("UI/Prefabs/parentDamage.prefab");*/
     }
 
     public void setDirection(Vector3 direction) {
@@ -41,8 +39,6 @@ public class ProjectilePlayer : MonoBehaviour
             if (enemyHealth)
                 enemyHealth.TakeDamage(damage);
             creatFloatingText(damage.ToString(), transform);
-            //GameObject damageText = Instantiate(DisplayDamage);
-            //damageText.GetComponent<DamageDisplay>().set;
             Destroy(gameObject);
         }
     }
