@@ -17,6 +17,13 @@ public class FlyingMovement : MonoBehaviour
     private Vector3 initialPos;
     private float rotStep;
     private float moveStep;
+    private Animator anim;
+    private bool animationIsPlaying = false;
+    public float minBarrelRollRate = 2.5f;
+    public float maxBarrelRollRate = 5f;
+    private float nextRoll;
+    private Transform childTransform;
+    private EnemyHealth health;
 
     void Start () {
         rigidBody = GetComponent<Rigidbody>();
@@ -24,6 +31,9 @@ public class FlyingMovement : MonoBehaviour
         myTransform = transform;
         initialPos = myTransform.position;
         moveStep = speed * Time.deltaTime;
+        anim = GetComponentInChildren<Animator>();
+        health = GetComponentInChildren<EnemyHealth>();
+        childTransform = transform.GetChild(0);
         rotStep = rotationSpeed * Time.deltaTime;
         if (!player)
         {
@@ -31,7 +41,20 @@ public class FlyingMovement : MonoBehaviour
         }
     }
     void FixedUpdate() {
-        AIMovement();
+        if (health.healthPoints <= 0)
+            Destroy(gameObject);
+        else
+            AIMovement();
+
+    }
+
+    private IEnumerator PlayAnimation(string animName)
+    {
+        anim.Play(animName, 0);
+        yield return new WaitForEndOfFrame();
+        animationIsPlaying = true;
+        yield return new WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length);
+        animationIsPlaying = false;
     }
 
     private void ReturnToPos() {
@@ -47,6 +70,12 @@ public class FlyingMovement : MonoBehaviour
     }
 
     private void AIMovement () {
+        if (Time.time > nextRoll)
+        {
+            float randTime = Random.Range(minBarrelRollRate, maxBarrelRollRate);
+            nextRoll = Time.time + randTime;
+            StartCoroutine(PlayAnimation("BarrelRoll"));
+        }
         float distance = Vector3.Distance(myTransform.position, player.position);
         int playerDirection = (int)(player.position.x - myTransform.position.x);
         if (distance <= range) {
@@ -64,7 +93,7 @@ public class FlyingMovement : MonoBehaviour
                         if (myTransform.position.y < minHeight)
                             myTransform.position = new Vector3(myTransform.position.x, minHeight, myTransform.position.z);
                     } else
-                        attack.Fire(player.position - myTransform.position, myTransform.position);
+                        attack.Fire(player.position - childTransform.position, childTransform.position);
                 }
                 else {
                     Debug.DrawRay(transform.position, direction * 50, Color.blue);

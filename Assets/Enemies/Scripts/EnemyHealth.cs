@@ -6,7 +6,9 @@ public class EnemyHealth : MonoBehaviour
 {
     public float healthPoints = 3;
     public bool deathPlaying = false;
+    public bool hasDeathAnim = false;
     public Material hitMaterial;
+    public GameObject explosion;
     private Animator anim;
     private Material oldMaterial;
     private bool takingDamage = false;
@@ -37,17 +39,31 @@ public class EnemyHealth : MonoBehaviour
         // }
         // Color color = renderer.material.color;
         // renderer.material.color = color;
-        if (childRenderer) {
-            childRenderer.material.SetColor("_Color", new Color(255, 0, 0, 1));
-        }
+        // if (childRenderer) {
+        //     childRenderer.material.SetColor("_Color", new Color(255, 0, 0, 1));
+        // }
         takingDamage = true;
         // oldMaterial = hitMaterial;
     }
 
+    void Explode()
+    {
+        GameObject go = Instantiate(explosion, transform.position, Quaternion.identity);
+        var exp = go.GetComponent<ParticleSystem>();
+        exp.Play();
+        Destroy(go, exp.main.duration);
+        Destroy(gameObject);
+    }
+
     void Update() {
         if (healthPoints <= 0 && !deathPlaying) {
-            // StartCoroutine(PlayAnimation("Death"));
-            Destroy(gameObject);
+            if (hasDeathAnim)
+                StartCoroutine(PlayAnimation("Death"));
+            else if (explosion) {
+                Explode();
+            }
+            else
+                Destroy(gameObject);
         }
         // if (takingDamage) {
         //     // for (var i = 0; i < renderer.materials.Length; i++)
