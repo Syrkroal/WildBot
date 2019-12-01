@@ -110,6 +110,7 @@ MonoBehaviour:
   timer: 4
   DisplayDamage: {fileID: 5951339222574937646, guid: 0f3104d1d783ba443af42123b88e727b,
     type: 3}
+  player: {fileID: 672205807490058002, guid: 1db4d1da3732f5f46858aa427431060b, type: 3}
 --- !u!54 &-4383204100260455944
 Rigidbody:
   m_ObjectHideFlags: 0

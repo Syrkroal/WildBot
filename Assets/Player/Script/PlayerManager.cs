@@ -7,10 +7,11 @@ public class PlayerManager : MonoBehaviour
     public int currentLife = 10;
     public int maxLife = 10;
     public int ammo = 100;
+    public float point = 0;
 
     void Start()
     {
-
+        point = 0;
     }
 
     void Update()
@@ -35,7 +36,7 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-        public void hitPlayer(int damage)
+    public void hitPlayer(int damage)
     {
         currentLife -= damage;
         print(currentLife);
