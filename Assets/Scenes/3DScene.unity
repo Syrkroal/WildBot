@@ -340,11 +340,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7491971568274668850, guid: 37f0bfb0844954f4b98daac96df3a270,
-        type: 3}
-      propertyPath: m_AngularSpeed
-      value: 360
-      objectReference: {fileID: 0}
     - target: {fileID: 7491971568274668851, guid: 37f0bfb0844954f4b98daac96df3a270,
         type: 3}
       propertyPath: player
@@ -359,6 +354,11 @@ PrefabInstance:
         type: 3}
       propertyPath: attackRange
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7491971568274668850, guid: 37f0bfb0844954f4b98daac96df3a270,
+        type: 3}
+      propertyPath: m_AngularSpeed
+      value: 360
       objectReference: {fileID: 0}
     - target: {fileID: 1073010013379921750, guid: 37f0bfb0844954f4b98daac96df3a270,
         type: 3}
@@ -846,11 +846,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7491971568274668850, guid: 37f0bfb0844954f4b98daac96df3a270,
-        type: 3}
-      propertyPath: m_AngularSpeed
-      value: 360
-      objectReference: {fileID: 0}
     - target: {fileID: 7491971568274668851, guid: 37f0bfb0844954f4b98daac96df3a270,
         type: 3}
       propertyPath: player
@@ -865,6 +860,11 @@ PrefabInstance:
         type: 3}
       propertyPath: attackRange
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7491971568274668850, guid: 37f0bfb0844954f4b98daac96df3a270,
+        type: 3}
+      propertyPath: m_AngularSpeed
+      value: 360
       objectReference: {fileID: 0}
     - target: {fileID: 1073010013379921750, guid: 37f0bfb0844954f4b98daac96df3a270,
         type: 3}
@@ -987,11 +987,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7491971568274668850, guid: 37f0bfb0844954f4b98daac96df3a270,
-        type: 3}
-      propertyPath: m_AngularSpeed
-      value: 360
-      objectReference: {fileID: 0}
     - target: {fileID: 7491971568274668851, guid: 37f0bfb0844954f4b98daac96df3a270,
         type: 3}
       propertyPath: player
@@ -1006,6 +1001,11 @@ PrefabInstance:
         type: 3}
       propertyPath: attackRange
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7491971568274668850, guid: 37f0bfb0844954f4b98daac96df3a270,
+        type: 3}
+      propertyPath: m_AngularSpeed
+      value: 360
       objectReference: {fileID: 0}
     - target: {fileID: 1073010013379921750, guid: 37f0bfb0844954f4b98daac96df3a270,
         type: 3}
@@ -1091,11 +1091,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7491971568274668850, guid: 37f0bfb0844954f4b98daac96df3a270,
-        type: 3}
-      propertyPath: m_AngularSpeed
-      value: 360
-      objectReference: {fileID: 0}
     - target: {fileID: 7491971568274668851, guid: 37f0bfb0844954f4b98daac96df3a270,
         type: 3}
       propertyPath: player
@@ -1110,6 +1105,11 @@ PrefabInstance:
         type: 3}
       propertyPath: attackRange
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7491971568274668850, guid: 37f0bfb0844954f4b98daac96df3a270,
+        type: 3}
+      propertyPath: m_AngularSpeed
+      value: 360
       objectReference: {fileID: 0}
     - target: {fileID: 1073010013379921750, guid: 37f0bfb0844954f4b98daac96df3a270,
         type: 3}
@@ -1195,11 +1195,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7491971568274668850, guid: 37f0bfb0844954f4b98daac96df3a270,
-        type: 3}
-      propertyPath: m_AngularSpeed
-      value: 360
-      objectReference: {fileID: 0}
     - target: {fileID: 7491971568274668851, guid: 37f0bfb0844954f4b98daac96df3a270,
         type: 3}
       propertyPath: player
@@ -1214,6 +1209,11 @@ PrefabInstance:
         type: 3}
       propertyPath: attackRange
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7491971568274668850, guid: 37f0bfb0844954f4b98daac96df3a270,
+        type: 3}
+      propertyPath: m_AngularSpeed
+      value: 360
       objectReference: {fileID: 0}
     - target: {fileID: 1073010013379921750, guid: 37f0bfb0844954f4b98daac96df3a270,
         type: 3}
@@ -1264,8 +1264,8 @@ Light:
     m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
-    m_Strength: 1
-    m_Bias: 0.05
+    m_Strength: 0.435
+    m_Bias: 0
     m_NormalBias: 0.4
     m_NearPlane: 0.2
     m_CullingMatrixOverride:
@@ -1312,7 +1312,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 860455872}
   m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalPosition: {x: 0, y: 8.52, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1493,11 +1493,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7491971568274668850, guid: 37f0bfb0844954f4b98daac96df3a270,
-        type: 3}
-      propertyPath: m_AngularSpeed
-      value: 360
-      objectReference: {fileID: 0}
     - target: {fileID: 7491971568274668851, guid: 37f0bfb0844954f4b98daac96df3a270,
         type: 3}
       propertyPath: player
@@ -1512,6 +1507,11 @@ PrefabInstance:
         type: 3}
       propertyPath: attackRange
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7491971568274668850, guid: 37f0bfb0844954f4b98daac96df3a270,
+        type: 3}
+      propertyPath: m_AngularSpeed
+      value: 360
       objectReference: {fileID: 0}
     - target: {fileID: 1073010013379921750, guid: 37f0bfb0844954f4b98daac96df3a270,
         type: 3}
@@ -1597,11 +1597,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7491971568274668850, guid: 37f0bfb0844954f4b98daac96df3a270,
-        type: 3}
-      propertyPath: m_AngularSpeed
-      value: 360
-      objectReference: {fileID: 0}
     - target: {fileID: 7491971568274668851, guid: 37f0bfb0844954f4b98daac96df3a270,
         type: 3}
       propertyPath: player
@@ -1616,6 +1611,11 @@ PrefabInstance:
         type: 3}
       propertyPath: attackRange
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7491971568274668850, guid: 37f0bfb0844954f4b98daac96df3a270,
+        type: 3}
+      propertyPath: m_AngularSpeed
+      value: 360
       objectReference: {fileID: 0}
     - target: {fileID: 1073010013379921750, guid: 37f0bfb0844954f4b98daac96df3a270,
         type: 3}
@@ -1924,11 +1924,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7491971568274668850, guid: 37f0bfb0844954f4b98daac96df3a270,
-        type: 3}
-      propertyPath: m_AngularSpeed
-      value: 360
-      objectReference: {fileID: 0}
     - target: {fileID: 7491971568274668851, guid: 37f0bfb0844954f4b98daac96df3a270,
         type: 3}
       propertyPath: player
@@ -1943,6 +1938,11 @@ PrefabInstance:
         type: 3}
       propertyPath: attackRange
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7491971568274668850, guid: 37f0bfb0844954f4b98daac96df3a270,
+        type: 3}
+      propertyPath: m_AngularSpeed
+      value: 360
       objectReference: {fileID: 0}
     - target: {fileID: 1073010013379921750, guid: 37f0bfb0844954f4b98daac96df3a270,
         type: 3}
@@ -2065,11 +2065,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7491971568274668850, guid: 37f0bfb0844954f4b98daac96df3a270,
-        type: 3}
-      propertyPath: m_AngularSpeed
-      value: 360
-      objectReference: {fileID: 0}
     - target: {fileID: 7491971568274668851, guid: 37f0bfb0844954f4b98daac96df3a270,
         type: 3}
       propertyPath: player
@@ -2084,6 +2079,11 @@ PrefabInstance:
         type: 3}
       propertyPath: attackRange
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7491971568274668850, guid: 37f0bfb0844954f4b98daac96df3a270,
+        type: 3}
+      propertyPath: m_AngularSpeed
+      value: 360
       objectReference: {fileID: 0}
     - target: {fileID: 1073010013379921750, guid: 37f0bfb0844954f4b98daac96df3a270,
         type: 3}

@@ -108,7 +108,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 80
   timer: 4
-  Owner: {fileID: 0}
+  DisplayDamage: {fileID: 5951339222574937646, guid: 0f3104d1d783ba443af42123b88e727b,
+    type: 3}
 --- !u!54 &-4383204100260455944
 Rigidbody:
   m_ObjectHideFlags: 0
