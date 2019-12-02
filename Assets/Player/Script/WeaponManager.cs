@@ -60,6 +60,8 @@ public class WeaponManager : MonoBehaviour
             if (bulletInLoader > 0)
             {
                 nextFire = Time.time + fireRate;
+                print("next fire possible in");
+                print(fireRate);
                 GameObject go = Instantiate(projectile, spawnPos, Quaternion.identity);
                 go.GetComponent<ProjectilePlayer>().setDirection(direction);
             }
