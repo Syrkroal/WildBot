@@ -18,6 +18,7 @@ public class PlayerControl : MonoBehaviour
     private float pitch = 0.0f;
     void Awake()
     {
+        Cursor.visible = false;
         Rigid = GetComponent<Rigidbody>();
     }
 
