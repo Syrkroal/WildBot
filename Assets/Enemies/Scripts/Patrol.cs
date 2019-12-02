@@ -17,6 +17,7 @@ public class Patrol : MonoBehaviour
     private float rotStep;
     private bool animationIsPlaying = false;
     private Animator anim;
+    private EnemyHealth health;
 
     void Start ()
     {
@@ -31,6 +32,7 @@ public class Patrol : MonoBehaviour
         {
             player = GameObject.FindWithTag("Player").transform;
         }
+        health = GetComponent<EnemyHealth>();
         // GotoNextPoint();
     }
 
@@ -65,7 +67,9 @@ public class Patrol : MonoBehaviour
     // }
 
     void Update() {
-        if (!animationIsPlaying) {
+        if (health.deathPlaying) {
+            agent.isStopped = true;
+        } else if (!animationIsPlaying) {
 
             Vector3 centerPos = myTransform.position + new Vector3(0, boxCollider.center.y, 0);
             float distance = Vector3.Distance(centerPos, player.position);

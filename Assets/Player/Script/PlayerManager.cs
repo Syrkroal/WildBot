@@ -59,6 +59,5 @@ public class PlayerManager : MonoBehaviour
     public void reload(int loaderSize, int bullets)
     {
         ammo -= (loaderSize - bullets);
-        print(ammo);
     }
 }

@@ -794,7 +794,6 @@ GameObject:
   - component: {fileID: 5389209410570494510}
   - component: {fileID: 5335645373907850152}
   - component: {fileID: 5448202067816226874}
-  - component: {fileID: 5448202067816226878}
   - component: {fileID: 5448202067816226869}
   - component: {fileID: 5448202067816226868}
   - component: {fileID: 5448202067816226875}
@@ -867,19 +866,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 2.0763466, z: 1}
   m_Center: {x: -0, y: 1.0451902, z: 0}
---- !u!65 &5448202067816226878
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5449192201659357324}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 2.0763466, z: 1}
-  m_Center: {x: -0, y: 1.0451902, z: 0}
 --- !u!114 &5448202067816226869
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -904,7 +890,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 7
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -946,6 +932,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthPoints: 50
   deathPlaying: 0
+  hasDeathAnim: 1
   hitMaterial: {fileID: 0}
 --- !u!114 &2686018779614579041
 MonoBehaviour:

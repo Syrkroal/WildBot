@@ -450,6 +450,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthPoints: 30
   deathPlaying: 0
+  hasDeathAnim: 1
   hitMaterial: {fileID: 0}
 --- !u!114 &411257853
 MonoBehaviour:
