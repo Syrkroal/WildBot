@@ -232,6 +232,7 @@ MonoBehaviour:
   currentLife: 10
   maxLife: 10
   ammo: 100
+  point: 0
 --- !u!1 &672205808212224029
 GameObject:
   m_ObjectHideFlags: 0
@@ -489,6 +490,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 2.2775624
+      objectReference: {fileID: 0}
+    - target: {fileID: 5348324151834216739, guid: e55673316ce4eda4ab6fb3bf83753681,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e55673316ce4eda4ab6fb3bf83753681, type: 3}

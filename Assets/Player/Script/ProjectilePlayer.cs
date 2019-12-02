@@ -54,7 +54,7 @@ public class ProjectilePlayer : MonoBehaviour
     {
         StoreType store = other.gameObject.GetComponent<StoreType>();
 
-        print(Mweapon.GetComponent<WeaponManager>().damage);
+        //print(Mweapon.GetComponent<WeaponManager>().damage);
         if (store.storeType == StoreType.type.Damage && Mplayer.GetComponent<PlayerManager>().point >= store.cost)
         {
             print("initial damage :");
@@ -65,10 +65,16 @@ public class ProjectilePlayer : MonoBehaviour
             print("upgarded damage :");
             print(Mweapon.GetComponent<WeaponManager>().damage);
         }
-        else
-            print(Mplayer.GetComponent<PlayerManager>().point);
-        
-        Destroy(gameObject);
+        if (store.storeType == StoreType.type.Life && Mplayer.GetComponent<PlayerManager>().point >= store.cost)
+        {
+            Mplayer.GetComponent<PlayerManager>().point -= store.cost;
+            Mplayer.GetComponent<PlayerManager>().maxLife += (int)(Mplayer.GetComponent<PlayerManager>().maxLife * (float)store.upgradePercentage / 100);
+            store.cost += store.cost;
+            print("upgarded life :");
+            print(Mplayer.GetComponent<PlayerManager>().maxLife);
+        }
+
+            Destroy(gameObject);
     }
 
     private void creatFloatingText(string Text, Transform pos)  
