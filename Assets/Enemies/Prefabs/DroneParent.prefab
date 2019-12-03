@@ -177,7 +177,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5b6d4b443cd17a49a00e6df65bda924, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectile: {fileID: 294164724298665719, guid: 453d336ab5a4d6245a5382cb6a36b9ed,
+  projectile: {fileID: 1526491594559869404, guid: a64a75e42a5f1a14aa26b7adb2b1be41,
     type: 3}
 --- !u!114 &7438661268044369811
 MonoBehaviour:
@@ -194,7 +194,7 @@ MonoBehaviour:
   speed: 5
   player: {fileID: 0}
   range: 1000
-  attackRange: 10
+  attackRange: 20
   minHeight: 6
   rotationSpeed: 3
   minBarrelRollRate: 2.5
