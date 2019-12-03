@@ -45,7 +45,7 @@ public class PlayerControl : MonoBehaviour
         if (Input.GetButtonDown("Jump") && onGround)
         {
             onGround = false;
-            Vector3 newVelocity = new Vector3(Rigid.velocity.x, Rigid.velocity.y + 3, Rigid.velocity.z);
+            Vector3 newVelocity = new Vector3(Rigid.velocity.x, Rigid.velocity.y + 5, Rigid.velocity.z);
             Rigid.velocity = newVelocity;
         }
 
