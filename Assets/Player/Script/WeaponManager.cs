@@ -16,14 +16,17 @@ public class WeaponManager : MonoBehaviour
     public float recoilSpeed = 1f;
     public float recoilLaps = 0.05f;
     public int loaderSize = 20;
-    public float damage = 1.0f;
+    public float damage = 10.0f;
+    public float headshotMultiplier = 2.5f;
     private int bulletInLoader;
 
     public float lockViewSpeed = 1.5f;
 
-    void Start()
+    void Awake()
     {
         bulletInLoader = loaderSize;
+        damage = 10.0f;
+        print(damage);
     }
 
     void Update()
@@ -34,7 +37,7 @@ public class WeaponManager : MonoBehaviour
         }
         if (Time.time < (nextFire + recoilLaps - fireRate))
             doRecoil();
-        if (Input.GetKey(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R))
         {
             transform.GetComponent<PlayerManager>().reload(loaderSize, bulletInLoader);
             bulletInLoader = loaderSize;
