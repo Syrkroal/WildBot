@@ -6,6 +6,7 @@ public class ProjectilePlayer : MonoBehaviour
 {
     public float speed = 1;
     public float timer = 2;
+    public float headshotMultiplier = 2.5f;
     private float damage;
     private Rigidbody rigidBody;
     private GameObject Owner;
@@ -33,7 +34,16 @@ public class ProjectilePlayer : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Ground") || other.gameObject.CompareTag("Wall"))
             Destroy(gameObject);
-        if (other.gameObject.CompareTag("Enemy"))
+        if (other.gameObject.CompareTag("EnemyHead"))
+        {
+            print("headshot!");
+            EnemyHealth enemyHealth = other.transform.parent.gameObject.GetComponent<EnemyHealth>();
+            if (enemyHealth)
+                enemyHealth.TakeDamage(damage * headshotMultiplier);
+            creatFloatingText((damage * headshotMultiplier).ToString(), transform);
+            Destroy(gameObject);
+        }
+        else if (other.gameObject.CompareTag("Enemy"))
         {
             EnemyHealth enemyHealth = other.gameObject.GetComponent<EnemyHealth>();
             if (enemyHealth)

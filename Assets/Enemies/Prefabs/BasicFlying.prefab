@@ -98,7 +98,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 14
+  m_Constraints: 10
   m_CollisionDetection: 0
 --- !u!114 &2957356264529529907
 MonoBehaviour:
@@ -150,7 +150,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthPoints: 10
   deathPlaying: 0
+  hasDeathAnim: 0
   hitMaterial: {fileID: 0}
+  explosion: {fileID: 0}
 --- !u!135 &8748163370415333273
 SphereCollider:
   m_ObjectHideFlags: 0
