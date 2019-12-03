@@ -17,6 +17,7 @@ public class WeaponManager : MonoBehaviour
     public float recoilLaps = 0.05f;
     public int loaderSize = 20;
     public float damage = 10.0f;
+    public float headshotMultiplier = 2.5f;
     private int bulletInLoader;
 
     public float lockViewSpeed = 1.5f;
@@ -60,8 +61,6 @@ public class WeaponManager : MonoBehaviour
             if (bulletInLoader > 0)
             {
                 nextFire = Time.time + fireRate;
-                print("next fire possible in");
-                print(fireRate);
                 GameObject go = Instantiate(projectile, spawnPos, Quaternion.identity);
                 go.GetComponent<ProjectilePlayer>().setDirection(direction);
             }

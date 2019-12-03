@@ -8,7 +8,7 @@ TagManager:
   - Wall
   - Ground
   - Item
-  - Store
+  - EnemyHead
   layers:
   - Default
   - TransparentFX
