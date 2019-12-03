@@ -1975,11 +1975,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 672205807490058026, guid: 1db4d1da3732f5f46858aa427431060b,
-        type: 3}
-      propertyPath: point
-      value: 1000
-      objectReference: {fileID: 0}
     - target: {fileID: 672205807490058029, guid: 1db4d1da3732f5f46858aa427431060b,
         type: 3}
       propertyPath: fireRate
@@ -1990,10 +1985,20 @@ PrefabInstance:
       propertyPath: recoilLaps
       value: 0.1
       objectReference: {fileID: 0}
+    - target: {fileID: 672205807490058029, guid: 1db4d1da3732f5f46858aa427431060b,
+        type: 3}
+      propertyPath: damage
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 672205807490058031, guid: 1db4d1da3732f5f46858aa427431060b,
         type: 3}
       propertyPath: speed
       value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 672205807490058026, guid: 1db4d1da3732f5f46858aa427431060b,
+        type: 3}
+      propertyPath: point
+      value: 1000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1db4d1da3732f5f46858aa427431060b, type: 3}
