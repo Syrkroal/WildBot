@@ -5,8 +5,10 @@ using UnityEngine.AI;
 
 public class Patrol : MonoBehaviour
 {
+    public Transform[] points;
     private int destPoint = 0;
     private NavMeshAgent agent;
+    private GroundEnemyMovement movement;
     public Transform player;
     private Transform myTransform;
     public float range = 5;
@@ -17,23 +19,21 @@ public class Patrol : MonoBehaviour
     private float rotStep;
     private bool animationIsPlaying = false;
     private Animator anim;
-    private EnemyHealth health;
+    private EnemyStat stat;
 
     void Start ()
     {
         agent = GetComponent<NavMeshAgent>();
+        movement = GetComponent<GroundEnemyMovement>();
         attack = GetComponent<EnemyAttack>();
         boxCollider = GetComponent<BoxCollider>();
         anim = GetComponent<Animator>();
+        stat = GetComponent<EnemyStat>();
         myTransform = transform;
-        // agent.autoBraking = false;
+        agent.autoBraking = false;
         rotStep = rotationSpeed * Time.deltaTime;
-        if (!player)
-        {
-            player = GameObject.FindWithTag("Player").transform;
-        }
-        health = GetComponent<EnemyHealth>();
-        // GotoNextPoint();
+
+        GotoNextPoint();
     }
 
     private IEnumerator PlayAnimation(string animName) {
@@ -56,20 +56,21 @@ public class Patrol : MonoBehaviour
         agent.isStopped = false;
     }
 
-    // private void GotoNextPoint() {
-    //     StartCoroutine(PlayAnimation("Idle"));
-    //     if (points.Length == 0)
-    //         return;
+    private void GotoNextPoint() {
+        StartCoroutine(PlayAnimation("Idle"));
+        if (points.Length == 0)
+            return;
 
-    //     agent.destination = points[destPoint].position;
-    //     destPoint = (destPoint + 1) % points.Length;
-    //     agent.isStopped = false;
-    // }
+        agent.destination = points[destPoint].position;
+        destPoint = (destPoint + 1) % points.Length;
+        agent.isStopped = false;
+    }
 
     void Update() {
-        if (health.deathPlaying) {
+        if (stat.deathPlaying) {
             agent.isStopped = true;
-        } else if (!animationIsPlaying) {
+        }
+        if (!animationIsPlaying && !stat.deathPlaying) {
 
             Vector3 centerPos = myTransform.position + new Vector3(0, boxCollider.center.y, 0);
             float distance = Vector3.Distance(centerPos, player.position);
@@ -81,7 +82,7 @@ public class Patrol : MonoBehaviour
                     agent.isStopped = true;
                     Vector3 direction = player.position - centerPos;
                     Vector3 newRot = Vector3.RotateTowards(myTransform.forward, direction, rotStep, 0.0f);
-                    float angle = Vector3.Angle(myTransform.forward, direction/*new Vector3(direction.x, 0 , 0)*/);
+                    float angle = Vector3.Angle(myTransform.forward, new Vector3(direction.x, 0 , 0));
                     if (angle < 15)
                     {
                         attack.MeleeAttack(player.position - centerPos, centerPos);
@@ -97,18 +98,11 @@ public class Patrol : MonoBehaviour
                     agent.SetDestination(player.position);
                 }
             }
-            agent.SetDestination(player.position);
-            // else
-            // {
-            //     if (!agent.pathPending && agent.remainingDistance < 0.5f)
-            //         GotoNextPoint();
-            // }
+            else
+            {
+                if (!agent.pathPending && agent.remainingDistance < 0.5f)
+                    GotoNextPoint();
+            }
         }
-    }
-
-    public void SetPlayer(Transform posPlayer)
-    {
-        player = posPlayer;
-        // agent.SetDestination(player.position);
     }
 }
