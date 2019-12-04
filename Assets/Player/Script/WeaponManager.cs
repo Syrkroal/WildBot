@@ -42,14 +42,14 @@ public class WeaponManager : MonoBehaviour
             transform.GetComponent<PlayerManager>().reload(loaderSize, bulletInLoader);
             bulletInLoader = loaderSize;
         }
-        replaceWeapon();
-
+        //replaceWeapon();
+        
         if (Input.GetMouseButton(1))
         {
             GotoPreciseView();
         }
-        else
-            GotoNormalView();
+/*        else
+            GotoNormalView();*/
     }
 
 
@@ -69,6 +69,10 @@ public class WeaponManager : MonoBehaviour
 
     public void doRecoil()
     {
+        print("wp pos :");
+        print(weapon.transform.position);
+        print("going to :");
+        print(recoilBack.position);
         weapon.transform.position = Vector3.MoveTowards(weapon.transform.position, recoilBack.position, Time.deltaTime * recoilSpeed);
     }
 

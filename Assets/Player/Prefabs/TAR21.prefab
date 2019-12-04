@@ -404,6 +404,7 @@ GameObject:
   - component: {fileID: 5353855491487687213}
   - component: {fileID: 5362144391697759137}
   - component: {fileID: 5348324151834216739}
+  - component: {fileID: -4964413774667587286}
   m_Layer: 0
   m_Name: TAR21
   m_TagString: Untagged
@@ -488,6 +489,25 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.0321724, y: 0.17089857, z: 0.6138841}
   m_Center: {x: -0.00000021979213, y: -0.049113125, z: 0.00027792156}
+--- !u!95 &-4964413774667587286
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5350132685592560633}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5dc61b1c1e3e0134cafbae01da5abbae, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 1
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &9205368558586558469
 GameObject:
   m_ObjectHideFlags: 0
