@@ -42,14 +42,14 @@ public class WeaponManager : MonoBehaviour
             transform.GetComponent<PlayerManager>().reload(loaderSize, bulletInLoader);
             bulletInLoader = loaderSize;
         }
-        //replaceWeapon();
+        replaceWeapon();
         
         if (Input.GetMouseButton(1))
         {
             GotoPreciseView();
         }
-/*        else
-            GotoNormalView();*/
+        else
+            GotoNormalView();
     }
 
 

@@ -20,7 +20,6 @@ public class EnemyHealth : MonoBehaviour
         if  (childRenderer)
             oldMaterial = childRenderer.material;
     }
-
     private IEnumerator PlayAnimation(string animName)
     {
         anim.Play(animName, 0);

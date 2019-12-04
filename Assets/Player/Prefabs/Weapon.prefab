@@ -33,6 +33,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 2.822, y: 0, z: 0}
+--- !u!1 &711561373024916700
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4035813621079161815}
+  m_Layer: 0
+  m_Name: test
+  m_TagString: Untagged
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4035813621079161815
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 711561373024916700}
+  m_LocalRotation: {x: -0.000000025467452, y: 0.99981636, z: -0.019161599, w: -0.00000037165725}
+  m_LocalPosition: {x: -0.291, y: 0, z: -0.4}
+  m_LocalScale: {x: 2.2117972, y: 2.2117982, z: 2.2117977}
+  m_Children: []
+  m_Father: {fileID: 1288924352810484266}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 5.018, y: 179.99998, z: 0}
 --- !u!1 &1272304612561783729
 GameObject:
   m_ObjectHideFlags: 0
@@ -63,6 +93,7 @@ Transform:
   - {fileID: 4893011018787541400}
   - {fileID: 8326539673304033072}
   - {fileID: 2633496460420333269}
+  - {fileID: 4035813621079161815}
   m_Father: {fileID: 707268511553733390}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -193,11 +224,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1288924352810484266}
     m_Modifications:
-    - target: {fileID: -4964413774667587286, guid: e55673316ce4eda4ab6fb3bf83753681,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5350132685592560633, guid: e55673316ce4eda4ab6fb3bf83753681,
         type: 3}
       propertyPath: m_Name
@@ -272,6 +298,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 2.2117977
+      objectReference: {fileID: 0}
+    - target: {fileID: -4964413774667587286, guid: e55673316ce4eda4ab6fb3bf83753681,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e55673316ce4eda4ab6fb3bf83753681, type: 3}
