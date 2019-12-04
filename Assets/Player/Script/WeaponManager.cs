@@ -18,7 +18,7 @@ public class WeaponManager : MonoBehaviour
     public int loaderSize = 20;
     public float damage = 10.0f;
     public float headshotMultiplier = 2.5f;
-    private int bulletInLoader;
+    public int bulletInLoader;
 
     public float lockViewSpeed = 1.5f;
 

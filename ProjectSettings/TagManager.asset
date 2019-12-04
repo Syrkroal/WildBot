@@ -9,6 +9,7 @@ TagManager:
   - Ground
   - Item
   - EnemyHead
+  - store
   layers:
   - Default
   - TransparentFX
