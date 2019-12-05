@@ -16,6 +16,7 @@ public class Patrol : MonoBehaviour
     public float rotationSpeed = 0.2f;
     private float rotStep;
     private bool animationIsPlaying = false;
+    public bool isAttacking = false;
     private Animator anim;
     private EnemyHealth health;
 
@@ -51,9 +52,25 @@ public class Patrol : MonoBehaviour
         yield return new WaitForEndOfFrame();
         agent.isStopped = true;
         animationIsPlaying = true;
+        if (isAttacking)
+            ChangeColliderState(true);
         yield return new WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length);
         animationIsPlaying = false;
         agent.isStopped = false;
+        if (isAttacking)
+            ChangeColliderState(false);
+        isAttacking = false;
+    }
+
+    public void ChangeColliderState(bool state) {
+        var collidersObj = gameObject.GetComponentsInChildren<Collider>();
+        for (var index = 0; index < collidersObj.Length; index++)
+        {
+            var colliderItem = collidersObj[index];
+            if (colliderItem.isTrigger) {
+                colliderItem.enabled = state;
+            }
+        }
     }
 
     // private void GotoNextPoint() {
@@ -71,7 +88,7 @@ public class Patrol : MonoBehaviour
             agent.isStopped = true;
         } else if (!animationIsPlaying) {
 
-            Vector3 centerPos = myTransform.position + new Vector3(0, boxCollider.center.y, 0);
+            Vector3 centerPos = myTransform.position;// + new Vector3(0, boxCollider.center.y, 0);
             float distance = Vector3.Distance(centerPos, player.position);
 
             if (distance <= range)
@@ -81,10 +98,10 @@ public class Patrol : MonoBehaviour
                     agent.isStopped = true;
                     Vector3 direction = player.position - centerPos;
                     Vector3 newRot = Vector3.RotateTowards(myTransform.forward, direction, rotStep, 0.0f);
-                    float angle = Vector3.Angle(myTransform.forward, direction/*new Vector3(direction.x, 0 , 0)*/);
-                    if (angle < 15)
+                    float angle = Vector3.Angle(myTransform.forward, new Vector3(direction.x, 0 , direction.z));
+                    if (angle < 10)
                     {
-                        attack.MeleeAttack(player.position - centerPos, centerPos);
+                        attack.MeleeAttack();
                         StartCoroutine(WaitForAnimation());
                     }
                     else
