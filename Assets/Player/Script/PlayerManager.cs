@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
-    public int currentLife = 10;
+    public float currentLife = 10;
     public int maxLife = 10;
     public int ammo = 100;
     public float point = 0;
@@ -34,9 +34,18 @@ public class PlayerManager : MonoBehaviour
             }
             Destroy(collision.gameObject);
         }
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            EnemyAttack attack = collision.gameObject.transform.root.GetComponent<EnemyAttack>();
+            if (attack.canDeal)
+            {
+                hitPlayer(attack.damage);
+                attack.canDeal = false;
+            }
+        }
     }
 
-    public void hitPlayer(int damage)
+    public void hitPlayer(float damage)
     {
         currentLife -= damage;
         print(currentLife);

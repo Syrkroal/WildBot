@@ -38,7 +38,7 @@ public class ProjectilePlayer : MonoBehaviour
         if (other.gameObject.CompareTag("EnemyHead"))
         {
             print("headshot!");
-            EnemyHealth enemyHealth = other.transform.parent.gameObject.GetComponent<EnemyHealth>();
+            EnemyHealth enemyHealth = other.transform.root.gameObject.GetComponent<EnemyHealth>();
             if (enemyHealth)
                 enemyHealth.TakeDamage(Mweapon.damage * Mweapon.headshotMultiplier);
             creatFloatingText((Mweapon.damage * Mweapon.headshotMultiplier).ToString(), transform);
@@ -46,9 +46,15 @@ public class ProjectilePlayer : MonoBehaviour
         }
         else if (other.gameObject.CompareTag("Enemy"))
         {
-            EnemyHealth enemyHealth = other.gameObject.GetComponent<EnemyHealth>();
+            EnemyHealth enemyHealth = other.transform.root.gameObject.GetComponent<EnemyHealth>();
             if (enemyHealth)
                 enemyHealth.TakeDamage(Mweapon.damage);
+            else
+            {
+                enemyHealth = other.transform.gameObject.GetComponent<EnemyHealth>();
+                if (enemyHealth)
+                    enemyHealth.TakeDamage(Mweapon.damage);
+            }
 
             int tmpInt = (int)Mweapon.damage;
             creatFloatingText(tmpInt.ToString(), transform);
