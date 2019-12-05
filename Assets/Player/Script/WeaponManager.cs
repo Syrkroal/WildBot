@@ -22,7 +22,9 @@ public class WeaponManager : MonoBehaviour
     private int bulletInLoader;
     public float lockViewSpeed = 1.5f;
 
-    private float loadingTime = 0.7f;
+    private Animator anim;
+    private AnimationClip [] clips;
+    private float loadingTime;
     private bool isReloading = false;
     private float loadingtimeLeft;
     void Awake()
@@ -30,11 +32,14 @@ public class WeaponManager : MonoBehaviour
         bulletInLoader = loaderSize;
         damage = 10.0f;
         print(damage);
+        anim = childWeapon.GetComponent<Animator>();
+        clips = anim.runtimeAnimatorController.animationClips;
+        loadingTime = clips[0].length;
     }
 
     void Update()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && !isReloading)
         {
             Fire(parentWeapon.transform.forward, weapon.transform.position);
         }
@@ -53,7 +58,7 @@ public class WeaponManager : MonoBehaviour
             isReloading = false;
         if (Time.time < (nextFire + recoilLaps - fireRate))
             doRecoil();
-        if (Input.GetMouseButton(1))
+        if (Input.GetMouseButton(1) && !isReloading)
         {
             GotoPreciseView();
         }
