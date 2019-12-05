@@ -220,6 +220,7 @@ MonoBehaviour:
   projectile: {fileID: 8623866083726484727, guid: e0cddf3f082cb74419c61314dd6c0d3b,
     type: 3}
   weapon: {fileID: 3980181965669157286}
+  childWeapon: {fileID: 3224476259528687654}
   parentWeapon: {fileID: 417722367699859445}
   recoilStart: {fileID: 672205806324078726}
   recoilBack: {fileID: 672205806217222722}
@@ -511,11 +512,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5136261826039525482}
     m_Modifications:
-    - target: {fileID: 5350132685592560633, guid: e55673316ce4eda4ab6fb3bf83753681,
-        type: 3}
-      propertyPath: m_Name
-      value: TAR21
-      objectReference: {fileID: 0}
     - target: {fileID: 5347971155094850567, guid: e55673316ce4eda4ab6fb3bf83753681,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -586,6 +582,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5350132685592560633, guid: e55673316ce4eda4ab6fb3bf83753681,
+        type: 3}
+      propertyPath: m_Name
+      value: TAR21
+      objectReference: {fileID: 0}
     - target: {fileID: 5348324151834216739, guid: e55673316ce4eda4ab6fb3bf83753681,
         type: 3}
       propertyPath: m_Enabled
@@ -594,17 +595,17 @@ PrefabInstance:
     - target: {fileID: 5348324151834216739, guid: e55673316ce4eda4ab6fb3bf83753681,
         type: 3}
       propertyPath: m_Center.x
-      value: 0.2375
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5348324151834216739, guid: e55673316ce4eda4ab6fb3bf83753681,
         type: 3}
       propertyPath: m_Center.y
-      value: 0.318
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5348324151834216739, guid: e55673316ce4eda4ab6fb3bf83753681,
         type: 3}
       propertyPath: m_Center.z
-      value: 0.8776
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5362144391697759137, guid: e55673316ce4eda4ab6fb3bf83753681,
         type: 3}
@@ -613,6 +614,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e55673316ce4eda4ab6fb3bf83753681, type: 3}
+--- !u!1 &3224476259528687654 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5350132685592560633, guid: e55673316ce4eda4ab6fb3bf83753681,
+    type: 3}
+  m_PrefabInstance: {fileID: 7386142284130075615}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3222068421246455768 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5347971155094850567, guid: e55673316ce4eda4ab6fb3bf83753681,
