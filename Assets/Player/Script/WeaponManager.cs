@@ -4,6 +4,7 @@ public class WeaponManager : MonoBehaviour
 {
     public GameObject projectile;
     public GameObject weapon;
+    public GameObject childWeapon;
     public GameObject parentWeapon;
     private GameObject Player;
     public Transform recoilStart;
@@ -19,32 +20,45 @@ public class WeaponManager : MonoBehaviour
     public float damage = 10.0f;
     public float headshotMultiplier = 2.5f;
     private int bulletInLoader;
-
     public float lockViewSpeed = 1.5f;
 
+    private Animator anim;
+    private AnimationClip [] clips;
+    private float loadingTime;
+    private bool isReloading = false;
+    private float loadingtimeLeft;
     void Awake()
     {
         bulletInLoader = loaderSize;
         damage = 10.0f;
         print(damage);
+        anim = childWeapon.GetComponent<Animator>();
+        clips = anim.runtimeAnimatorController.animationClips;
+        loadingTime = clips[0].length;
     }
 
     void Update()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && !isReloading)
         {
             Fire(parentWeapon.transform.forward, weapon.transform.position);
         }
-        if (Time.time < (nextFire + recoilLaps - fireRate))
-            doRecoil();
-        if (Input.GetKeyDown(KeyCode.R))
+
+        if (Input.GetKeyDown(KeyCode.R) && !isReloading)
         {
+            isReloading = true;
+            loadingtimeLeft = loadingTime + Time.time;
             transform.GetComponent<PlayerManager>().reload(loaderSize, bulletInLoader);
             bulletInLoader = loaderSize;
+            childWeapon.GetComponent<Animator>().Play("reloadAnim", 0);
         }
         replaceWeapon();
 
-        if (Input.GetMouseButton(1))
+        if (loadingtimeLeft < Time.time)
+            isReloading = false;
+        if (Time.time < (nextFire + recoilLaps - fireRate))
+            doRecoil();
+        if (Input.GetMouseButton(1) && !isReloading)
         {
             GotoPreciseView();
         }
