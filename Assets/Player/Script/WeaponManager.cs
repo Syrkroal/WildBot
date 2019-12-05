@@ -36,7 +36,7 @@ public class WeaponManager : MonoBehaviour
     {
         if (Input.GetMouseButton(0))
         {
-            Fire(parentWeapon.transform.forward, weapon.transform.position);
+            Fire(transform.forward, weapon.transform.position);
         }
 
         if (Input.GetKeyDown(KeyCode.R) && !isReloading)

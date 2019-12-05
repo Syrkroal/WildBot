@@ -3,10 +3,8 @@ using System.Collections;
 
 public class PlayerControl : MonoBehaviour
 {
-    public Rigidbody Rigid;
-    public GameObject View;
-
     public float speed = 0.2f;
+    public Rigidbody Rigid;
     private float x_min;
     private float x_max;
     private float z_min;
@@ -69,7 +67,6 @@ public class PlayerControl : MonoBehaviour
         yaw += mouseSpeed * Input.GetAxis("Mouse X");
         pitch -= mouseSpeed * Input.GetAxis("Mouse Y");
 
-        View.transform.eulerAngles = new Vector3(pitch, yaw, 0.0f);
-        transform.eulerAngles = new Vector3(0.0f, yaw, 0.0f);
+        transform.eulerAngles = new Vector3(pitch, yaw, 0.0f);
     }
 }
