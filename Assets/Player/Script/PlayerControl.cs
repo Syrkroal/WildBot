@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerControl : MonoBehaviour {
-    public float speed = 40;
-    private Rigidbody rigidBody;
+public class PlayerControl : MonoBehaviour
+{
+    public Rigidbody Rigid;
+    public GameObject View;
+
+    public float speed = 0.2f;
     private float x_min;
     private float x_max;
     private float z_min;
@@ -28,10 +31,21 @@ public class PlayerControl : MonoBehaviour {
 
     void OnCollisionEnter(Collision collision)
     {
-        // if (collision.gameObject.CompareTag("Enemy")) {
-        //     EnemyStat stat = collision.gameObject.GetComponent<EnemyStat>();
-        //     if (stat)
-        //         stat.TakeDamage(1);
-        // }
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+        }
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            onGround = true;
+        }
+    }
+
+    void MoveCamera()
+    {
+        yaw += mouseSpeed * Input.GetAxis("Mouse X");
+        pitch -= mouseSpeed * Input.GetAxis("Mouse Y");
+
+        View.transform.eulerAngles = new Vector3(pitch, yaw, 0.0f);
+        transform.eulerAngles = new Vector3(0.0f, yaw, 0.0f);
     }
 }
