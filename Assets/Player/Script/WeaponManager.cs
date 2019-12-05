@@ -6,11 +6,11 @@ public class WeaponManager : MonoBehaviour
     public GameObject weapon;
     public GameObject childWeapon;
     public GameObject parentWeapon;
-    private GameObject Player;
     public Transform recoilStart;
     public Transform recoilBack;
     public Transform NormalShoot;
     public Transform PreciseShoot;
+    public Camera wCamera;
 
     public float fireRate = 0.2f;
     private float nextFire = 0;
@@ -21,12 +21,15 @@ public class WeaponManager : MonoBehaviour
     public float headshotMultiplier = 2.5f;
     private int bulletInLoader;
     public float lockViewSpeed = 1.5f;
+    public float PreciseView = 10;
 
     private Animator anim;
     private AnimationClip [] clips;
     private float loadingTime;
     private bool isReloading = false;
+    private bool isAiming = false;
     private float loadingtimeLeft;
+    private float currentView = 0;
     void Awake()
     {
         bulletInLoader = loaderSize;
@@ -60,10 +63,24 @@ public class WeaponManager : MonoBehaviour
             doRecoil();
         if (Input.GetMouseButton(1) && !isReloading)
         {
+            if (!isAiming)
+            {
+                GetComponent<PlayerControl>().speed = GetComponent<PlayerControl>().speed / 2;
+                GetComponent<PlayerControl>().mouseSpeed = GetComponent<PlayerControl>().mouseSpeed / 2;
+                isAiming = true;
+            }
             GotoPreciseView();
         }
         else
+        {
+            if (isAiming)
+            {
+                GetComponent<PlayerControl>().speed = GetComponent<PlayerControl>().speed * 2;
+                GetComponent<PlayerControl>().mouseSpeed = GetComponent<PlayerControl>().mouseSpeed * 2;
+                isAiming = false;
+            }
             GotoNormalView();
+        }
     }
 
 
@@ -93,11 +110,21 @@ public class WeaponManager : MonoBehaviour
 
     public void GotoPreciseView()
     {
+        if (currentView < PreciseView)
+        {
+            currentView++;
+            wCamera.fieldOfView--;
+        }
         parentWeapon.transform.position = Vector3.MoveTowards(parentWeapon.transform.position, PreciseShoot.position, Time.deltaTime * lockViewSpeed);
     }
 
     public void GotoNormalView()
     {
+        if (currentView > 0)
+        {
+            currentView--;
+            wCamera.fieldOfView++;
+        }
         parentWeapon.transform.position = Vector3.MoveTowards(parentWeapon.transform.position, NormalShoot.position, Time.deltaTime * lockViewSpeed);
     }
 }

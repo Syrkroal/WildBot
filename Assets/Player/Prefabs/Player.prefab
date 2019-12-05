@@ -226,6 +226,7 @@ MonoBehaviour:
   recoilBack: {fileID: 672205806217222722}
   NormalShoot: {fileID: 7233385473429298927}
   PreciseShoot: {fileID: 1658954549697202861}
+  wCamera: {fileID: 672205808212224027}
   fireRate: 0.2
   recoilSpeed: 4
   recoilLaps: 0.1
@@ -247,7 +248,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Rigid: {fileID: 672205807490058028}
   View: {fileID: 5317838807929289981}
-  speed: 0.1
+  speed: 0.2
   JumpForce: 5
   mouseSpeed: 4
 --- !u!114 &672205807490058026

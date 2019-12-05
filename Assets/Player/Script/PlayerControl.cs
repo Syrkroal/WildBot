@@ -33,8 +33,6 @@ public class PlayerControl : MonoBehaviour
 
     private void KeyboardMovement()
     {
-        //Rigid.MoveRotation(Rigid.rotation * Quaternion.Euler(new Vector3(0, Input.GetAxis("Mouse X") * mouseSpeed, 0)));
-        //Rigid.MoveRotation(Rigid.rotation * Quaternion.Euler(new Vector3(0, Input.GetAxis("Mouse Y") * mouseSpeed, 0)));
         float tmpSpeed = speed;
         if (Input.GetAxis("Vertical") > 0 && Input.GetAxis("Horizontal") > 0) tmpSpeed = speed / 2;
         Rigid.MovePosition(transform.position + (transform.forward * Input.GetAxis("Vertical") * speed) + (transform.right * Input.GetAxis("Horizontal") * speed));
@@ -68,6 +66,10 @@ public class PlayerControl : MonoBehaviour
     {
         yaw += mouseSpeed * Input.GetAxis("Mouse X");
         pitch -= mouseSpeed * Input.GetAxis("Mouse Y");
+
+        print(pitch);
+        if (pitch > 90) pitch = 90;
+        if (pitch < -90) pitch = -90;
 
         View.transform.eulerAngles = new Vector3(pitch, yaw, 0.0f);
         transform.eulerAngles = new Vector3(0.0f, yaw, 0.0f);
