@@ -5,7 +5,6 @@ using UnityEngine.AI;
 
 public class Follow : MonoBehaviour
 {
-    private int destPoint = 0;
     private NavMeshAgent agent;
     public Transform player;
     private Transform myTransform;

@@ -179,6 +179,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectile: {fileID: 1526491594559869404, guid: a64a75e42a5f1a14aa26b7adb2b1be41,
     type: 3}
+  canDeal: 0
+  damage: 0
 --- !u!114 &7438661268044369811
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -199,6 +201,9 @@ MonoBehaviour:
   rotationSpeed: 3
   minBarrelRollRate: 2.5
   maxBarrelRollRate: 5
+  mLayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!114 &7438661268044369815
 MonoBehaviour:
   m_ObjectHideFlags: 0

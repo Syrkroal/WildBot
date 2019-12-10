@@ -67,7 +67,6 @@ public class PlayerControl : MonoBehaviour
         yaw += mouseSpeed * Input.GetAxis("Mouse X");
         pitch -= mouseSpeed * Input.GetAxis("Mouse Y");
 
-        print(pitch);
         if (pitch > 90) pitch = 90;
         if (pitch < -90) pitch = -90;
 
