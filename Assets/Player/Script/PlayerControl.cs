@@ -12,21 +12,45 @@ public class PlayerControl : MonoBehaviour
     private float z_min;
     private float z_max;
 
-    void Awake (){
-        rigidBody = GetComponent<Rigidbody>();
-    }
-    void FixedUpdate() {
-        KeyboardMovement();
+    private bool onGround;
+    public float JumpForce;
+    public float mouseSpeed = 4.0f;
+
+    private float yaw = 0.0f;
+    private float pitch = 0.0f;
+    void Awake()
+    {
+        Cursor.visible = false;
+        Rigid = GetComponent<Rigidbody>();
     }
 
-    private void KeyboardMovement (){
-        float xMove = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
-        float yMove = Input.GetAxis("Vertical") * speed * Time.deltaTime;
-        float xSpeed = xMove * speed;
-        float ySpeed = yMove * speed;
-        Vector3 newVelocity = new Vector3(xSpeed, ySpeed, 0);
-        // Vector3 newVelocity = new Vector3(xSpeed, 0, 0);
-        rigidBody.velocity = newVelocity;
+    void Update()
+    {
+        KeyboardMovement();
+        JumpEvent();
+        MoveCamera();
+    }
+
+    private void KeyboardMovement()
+    {
+        //Rigid.MoveRotation(Rigid.rotation * Quaternion.Euler(new Vector3(0, Input.GetAxis("Mouse X") * mouseSpeed, 0)));
+        //Rigid.MoveRotation(Rigid.rotation * Quaternion.Euler(new Vector3(0, Input.GetAxis("Mouse Y") * mouseSpeed, 0)));
+        float tmpSpeed = speed;
+        if (Input.GetAxis("Vertical") > 0 && Input.GetAxis("Horizontal") > 0) tmpSpeed = speed / 2;
+        Rigid.MovePosition(transform.position + (transform.forward * Input.GetAxis("Vertical") * speed) + (transform.right * Input.GetAxis("Horizontal") * speed));
+        if (Input.GetKeyDown("space"))
+            Rigid.AddForce(transform.up * JumpForce);
+    }
+
+    private void JumpEvent()
+    {
+        if (Input.GetButtonDown("Jump") && onGround)
+        {
+            onGround = false;
+            Vector3 newVelocity = new Vector3(Rigid.velocity.x, Rigid.velocity.y + 5, Rigid.velocity.z);
+            Rigid.velocity = newVelocity;
+        }
+
     }
 
     void OnCollisionEnter(Collision collision)
