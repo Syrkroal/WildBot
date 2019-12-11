@@ -8,10 +8,14 @@ public class PlayerManager : MonoBehaviour
     public int maxLife = 10;
     public int ammo = 100;
     public float point = 0;
+    public List<AudioClip> sounds =  new List<AudioClip>();
+
+    private AudioSource sound;
 
     void Start()
     {
         point = 0;
+        sound = transform.GetComponent<AudioSource>();
     }
 
     void Update()
@@ -39,6 +43,7 @@ public class PlayerManager : MonoBehaviour
             EnemyAttack attack = collision.gameObject.transform.root.GetComponent<EnemyAttack>();
             if (attack.canDeal)
             {
+                sound.PlayOneShot(sounds[0]);
                 hitPlayer(attack.damage);
                 attack.canDeal = false;
             }
