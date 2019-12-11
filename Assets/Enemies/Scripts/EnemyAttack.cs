@@ -5,14 +5,18 @@ using UnityEngine;
 public class EnemyAttack : MonoBehaviour
 {
     public GameObject projectile;
+    public bool canDeal;
+    public float damage;
     private float fireRate = 2;
     private float nextFire;
     private float meleeAttackRate = 2;
     private float nextMeleeAttack;
     private Animator anim;
+    private Patrol patrol;
 
     void Start() {
         anim = GetComponent<Animator>();
+        patrol = GetComponent<Patrol>();
     }
 
     public void Fire(Vector3 direction, Vector3 spawnPos) {
@@ -24,11 +28,13 @@ public class EnemyAttack : MonoBehaviour
         }
     }
 
-    public void MeleeAttack(Vector3 direction, Vector3 spawnPos)
+    public void MeleeAttack()
     {
         if (Time.time > nextMeleeAttack)
         {
+            canDeal = true;
             anim.Play("Attack", 0);
+            patrol.isAttacking = true;
             nextMeleeAttack = Time.time + meleeAttackRate;
         }
     }
