@@ -1,12 +1,11 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class FlyingMovement : MonoBehaviour
 {
     public float speed = 5;
     private Rigidbody rigidBody;
-    private int direction = 1;
     public Transform player;
     private Transform myTransform;
     public float range = 5;
@@ -16,8 +15,20 @@ public class FlyingMovement : MonoBehaviour
     private Vector3 initialPos;
     private float rotStep;
     private float moveStep;
+    private Animator anim;
+    private bool hasHit = false;
+    public float minBarrelRollRate = 2.5f;
+    public float maxBarrelRollRate = 5f;
+    private float nextRoll;
+    private float nextHitCheck;
+    private Transform childTransform;
+    private EnemyHealth health;
+    private BoxCollider boxCollider;
+    public LayerMask mLayerMask;
+    private Vector3 stirDir;
 
     void Start () {
+        boxCollider = GetComponentInChildren<BoxCollider>();
         rigidBody = GetComponent<Rigidbody>();
         attack = GetComponent<EnemyAttack>();
         myTransform = transform;
@@ -26,7 +37,18 @@ public class FlyingMovement : MonoBehaviour
         rotStep = rotationSpeed * Time.deltaTime;
     }
     void FixedUpdate() {
-        AIMovement();
+        if (health.healthPoints <= 0)
+            Destroy(gameObject);
+        else
+            AIMovement();
+
+    }
+
+    private IEnumerator PlayAnimation(string animName)
+    {
+        anim.Play(animName, 0);
+        yield return new WaitForEndOfFrame();
+        yield return new WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length);
     }
 
     private void ReturnToPos() {
@@ -37,6 +59,32 @@ public class FlyingMovement : MonoBehaviour
                 myTransform.position = Vector3.MoveTowards(myTransform.position, initialPos, moveStep);
             } else {
                 myTransform.rotation = Quaternion.LookRotation(newRot);
+            }
+        }
+    }
+
+    private void CheckCollisionOverlap() {
+        if (hasHit) {
+            myTransform.Translate(stirDir * Time.deltaTime, Space.World);
+            float randTime = Random.Range(minBarrelRollRate, maxBarrelRollRate);
+            if (Time.time > nextHitCheck) {
+                nextHitCheck = Time.time + randTime;
+                hasHit = false;
+            }
+        } else {
+            Collider[] hits = Physics.OverlapBox(childTransform.position, childTransform.localScale / 2, Quaternion.identity, mLayerMask);
+            foreach (Collider hit in hits)
+            {
+                if (hit == boxCollider)
+                    continue;
+                hasHit = true;
+                Vector3 closestPoint = hit.ClosestPointOnBounds(childTransform.position);
+                Vector3 direction = childTransform.position - closestPoint;
+                int randTime = Random.Range(0, 2);
+                if (randTime == 0)
+                    stirDir = Vector3.left;
+                else
+                    stirDir = Vector3.right;
             }
         }
     }
@@ -66,5 +114,6 @@ public class FlyingMovement : MonoBehaviour
             }
         } else
             ReturnToPos();
+        CheckCollisionOverlap();
     }
 }
