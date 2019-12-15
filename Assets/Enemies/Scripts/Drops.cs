@@ -22,7 +22,11 @@ public class Drops : MonoBehaviour
                     float rand = Random.Range(0, 100);
                     if (rand < item.rate)
                     {
-                        Instantiate(items[i], new Vector3(transform.position.x, height, transform.position.z), Quaternion.identity);
+
+                        if (transform.position.y < height)
+                            Instantiate(items[i], new Vector3(transform.position.x, height, transform.position.z), Quaternion.identity);
+                        else
+                            Instantiate(items[i], transform.position, Quaternion.identity);
                     }
                 }
             }

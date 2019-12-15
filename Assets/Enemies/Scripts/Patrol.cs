@@ -104,9 +104,7 @@ public class Patrol : MonoBehaviour
                         StartCoroutine(WaitForAnimation());
                     }
                     else
-                    {
                         myTransform.rotation = Quaternion.LookRotation(newRot);
-                    }
                 }
                 else {
                     agent.isStopped = false;
@@ -114,17 +112,11 @@ public class Patrol : MonoBehaviour
                 }
             }
             agent.SetDestination(player.position);
-            // else
-            // {
-            //     if (!agent.pathPending && agent.remainingDistance < 0.5f)
-            //         GotoNextPoint();
-            // }
         }
     }
 
     public void SetPlayer(Transform posPlayer)
     {
         player = posPlayer;
-        // agent.SetDestination(player.position);
     }
 }

@@ -112,8 +112,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 302adefde1c5cfb4eb0bcdff890246c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 5
   player: {fileID: 0}
+  range: 5
+  attackRange: 1
+  minHeight: 5
+  maxHeight: 11
   rotationSpeed: 1
+  minBarrelRollRate: 2.5
+  maxBarrelRollRate: 5
+  mLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!195 &2957356264529529901
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -179,5 +189,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   items:
-  - {fileID: 3118218443897953589, guid: 68666924a3739454886a718f2e869dd5, type: 3}
+  - {fileID: 87672394171056355, guid: 36b32ae5c3a909c4fb5e9d0331866e96, type: 3}
   height: 2
