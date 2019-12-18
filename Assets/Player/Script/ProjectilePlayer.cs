@@ -38,27 +38,32 @@ public class ProjectilePlayer : MonoBehaviour
         if (other.gameObject.CompareTag("EnemyHead"))
         {
             EnemyHealth enemyHealth = other.transform.root.gameObject.GetComponent<EnemyHealth>();
-            if (enemyHealth)
+            if (enemyHealth && !enemyHealth.deathPlaying)
                 enemyHealth.TakeDamage(Mweapon.damage * Mweapon.headshotMultiplier);
-            int tmpInt = (int)(Mweapon.damage * Mweapon.headshotMultiplier);
-            creatFloatingText(tmpInt.ToString(), transform);
+            if (!enemyHealth.deathPlaying) {
+                int tmpInt = (int)(Mweapon.damage * Mweapon.headshotMultiplier);
+                creatFloatingText(tmpInt.ToString(), transform);
+                Mplayer.point += tmpInt;
+            }
             Destroy(gameObject);
         }
         else if (other.gameObject.CompareTag("Enemy"))
         {
             EnemyHealth enemyHealth = other.transform.root.gameObject.GetComponent<EnemyHealth>();
-            if (enemyHealth)
+            if (enemyHealth && !enemyHealth.deathPlaying)
                 enemyHealth.TakeDamage(Mweapon.damage);
             else
             {
                 enemyHealth = other.transform.gameObject.GetComponent<EnemyHealth>();
-                if (enemyHealth)
+                if (enemyHealth && !enemyHealth.deathPlaying)
                     enemyHealth.TakeDamage(Mweapon.damage);
             }
 
-            int tmpInt = (int)Mweapon.damage;
-            creatFloatingText(tmpInt.ToString(), transform);
-            Mplayer.point += tmpInt;
+            if (enemyHealth && !enemyHealth.deathPlaying) {
+                int tmpInt = (int)Mweapon.damage;
+                creatFloatingText(tmpInt.ToString(), transform);
+                Mplayer.point += tmpInt;
+            }
             Destroy(gameObject);
         }
         if (other.gameObject.CompareTag("Store"))
@@ -74,24 +79,18 @@ public class ProjectilePlayer : MonoBehaviour
             Mplayer.point -= store.cost;
             Mweapon.damage += (Mweapon.damage * (float)store.upgradePercentage / 100);
             store.cost += store.cost;
-            print("upgarded damage :");
-            print(Mweapon.damage);
         }
         if (store.storeType == StoreType.type.Life && Mplayer.point >= store.cost)
         {
             Mplayer.point -= store.cost;
             Mplayer.maxLife += (int)(Mplayer.maxLife * (float)store.upgradePercentage / 100);
             store.cost += store.cost;
-            print("upgarded life :");
-            print(Mplayer.maxLife);
         }
         if (store.storeType == StoreType.type.LoaderSize && Mplayer.point >= store.cost)
         {
             Mplayer.point -= store.cost;
             Mweapon.loaderSize += (int)(Mweapon.loaderSize * (float)store.upgradePercentage / 100);
             store.cost += store.cost;
-            print("upgarded loader :");
-            print(Mweapon.loaderSize);
         }
         if (store.storeType == StoreType.type.FireRate && Mplayer.point >= store.cost)
         {
@@ -99,8 +98,6 @@ public class ProjectilePlayer : MonoBehaviour
             Mplayer.point -= store.cost;
             Mweapon.fireRate -= (Mweapon.fireRate * (float)store.upgradePercentage / 100);
             store.cost += store.cost;
-            print("upgarded firerate :");
-            print(Mweapon.fireRate);
         }
         Destroy(gameObject);
     }

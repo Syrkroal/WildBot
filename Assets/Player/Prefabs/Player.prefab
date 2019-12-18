@@ -234,6 +234,7 @@ MonoBehaviour:
   damage: 10
   headshotMultiplier: 2.5
   lockViewSpeed: 1.5
+  PreciseView: 10
 --- !u!114 &672205807490058031
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -266,7 +267,7 @@ MonoBehaviour:
   currentLife: 10
   maxLife: 10
   ammo: 100
-  point: 0
+  point: 630
 --- !u!1 &672205808212224029
 GameObject:
   m_ObjectHideFlags: 0

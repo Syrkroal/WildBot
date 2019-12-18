@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemType: 0
-  rate: 100
+  rate: 20
 --- !u!65 &2678124595208036560
 BoxCollider:
   m_ObjectHideFlags: 0

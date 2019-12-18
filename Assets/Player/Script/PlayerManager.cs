@@ -8,15 +8,16 @@ public class PlayerManager : MonoBehaviour
     public int maxLife = 10;
     public int ammo = 100;
     public float point = 0;
+    private Rigidbody rb;
 
     void Start()
     {
         point = 0;
+        rb = GetComponent<Rigidbody>();
     }
 
     void Update()
     {
-
     }
 
     void OnTriggerEnter(Collider collision)
@@ -37,7 +38,7 @@ public class PlayerManager : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             EnemyAttack attack = collision.gameObject.transform.root.GetComponent<EnemyAttack>();
-            if (attack.canDeal)
+            if (attack && attack.canDeal)
             {
                 hitPlayer(attack.damage);
                 attack.canDeal = false;
@@ -51,6 +52,12 @@ public class PlayerManager : MonoBehaviour
         print(currentLife);
         if (currentLife <= 0)
             playerDead();
+    }
+
+    public void Bump(Vector3 direction)
+    {
+        Vector3 newVelocity = new Vector3(direction.x * 5, direction.y + 5, direction.z * 5);
+        rb.velocity = newVelocity;
     }
 
     void playerDead()
