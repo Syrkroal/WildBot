@@ -37,11 +37,11 @@ public class ProjectilePlayer : MonoBehaviour
             Destroy(gameObject);
         if (other.gameObject.CompareTag("EnemyHead"))
         {
-            print("headshot!");
             EnemyHealth enemyHealth = other.transform.root.gameObject.GetComponent<EnemyHealth>();
             if (enemyHealth)
                 enemyHealth.TakeDamage(Mweapon.damage * Mweapon.headshotMultiplier);
-            creatFloatingText((Mweapon.damage * Mweapon.headshotMultiplier).ToString(), transform);
+            int tmpInt = (int)(Mweapon.damage * Mweapon.headshotMultiplier);
+            creatFloatingText(tmpInt.ToString(), transform);
             Destroy(gameObject);
         }
         else if (other.gameObject.CompareTag("Enemy"))

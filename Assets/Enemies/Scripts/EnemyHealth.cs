@@ -8,6 +8,7 @@ public class EnemyHealth : MonoBehaviour
     public bool deathPlaying = false;
     public bool hasDeathAnim = false;
     public Material hitMaterial;
+    public float extraDeathTime = 0;
     public GameObject explosion;
     private Animator anim;
     private Material oldMaterial;
@@ -25,7 +26,7 @@ public class EnemyHealth : MonoBehaviour
     {
         anim.Play(animName, 0);
         yield return new WaitForEndOfFrame();
-        yield return new WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length);
+        yield return new WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length + extraDeathTime);
         Destroy(gameObject);
     }
 

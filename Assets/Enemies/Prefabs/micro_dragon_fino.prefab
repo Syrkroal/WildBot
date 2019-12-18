@@ -384,6 +384,7 @@ MonoBehaviour:
   deathPlaying: 0
   hasDeathAnim: 1
   hitMaterial: {fileID: 0}
+  extraDeathTime: 1
   explosion: {fileID: 0}
 --- !u!114 &5470224360095123719
 MonoBehaviour:
@@ -427,8 +428,8 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.9143529
-  m_Center: {x: 0.014858723, y: 0.59770346, z: 0}
+  m_Radius: 0.63333035
+  m_Center: {x: -0.04150915, y: 0.59770346, z: 0}
 --- !u!114 &1174828719915933031
 MonoBehaviour:
   m_ObjectHideFlags: 0
