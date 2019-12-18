@@ -8,6 +8,7 @@ public class EnemyHealth : MonoBehaviour
     public bool deathPlaying = false;
     public bool hasDeathAnim = false;
     public Material hitMaterial;
+    public float extraDeathTime = 0;
     public GameObject explosion;
 
     public List<AudioClip> sounds = new List<AudioClip>();
@@ -27,9 +28,8 @@ public class EnemyHealth : MonoBehaviour
     private IEnumerator PlayAnimation(string animName)
     {
         anim.Play(animName, 0);
-        deathPlaying = true;
         yield return new WaitForEndOfFrame();
-        yield return new WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length);
+        yield return new WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length + extraDeathTime);
         Destroy(gameObject);
     }
 
@@ -61,7 +61,10 @@ public class EnemyHealth : MonoBehaviour
     void Update() {
         if (healthPoints <= 0 && !deathPlaying) {
             if (hasDeathAnim)
+            {
+                deathPlaying = true;
                 StartCoroutine(PlayAnimation("Death"));
+            }
             else if (explosion) {
                 Explode();
             }

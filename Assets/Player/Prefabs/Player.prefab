@@ -374,6 +374,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  point: 630
 --- !u!1 &672205808212224029
 GameObject:
   m_ObjectHideFlags: 0
