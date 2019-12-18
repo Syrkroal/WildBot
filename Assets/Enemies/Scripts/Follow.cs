@@ -26,6 +26,7 @@ public class Follow : MonoBehaviour
     private BoxCollider boxCollider;
     public LayerMask mLayerMask;
     private Vector3 stirDir;
+    public Vector3 directionToPlayer;
 
     void Start()
     {
@@ -87,6 +88,7 @@ public class Follow : MonoBehaviour
     {
         float distance = Vector3.Distance(myTransform.position, player.position);
         int playerDirection = (int)(player.position.x - myTransform.position.x);
+        directionToPlayer = player.position - myTransform.position;
         if (health.deathPlaying)
         {
             rigidBody.useGravity = true;
