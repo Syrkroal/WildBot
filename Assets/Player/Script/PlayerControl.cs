@@ -6,6 +6,8 @@ public class PlayerControl : MonoBehaviour
     public Rigidbody Rigid;
     public GameObject View;
 
+    public bool isPaused = false;
+
     public float speed = 0.2f;
     private float x_min;
     private float x_max;
@@ -26,9 +28,12 @@ public class PlayerControl : MonoBehaviour
 
     void Update()
     {
+        if (!isPaused) {
+
         KeyboardMovement();
         JumpEvent();
         MoveCamera();
+        }
     }
 
     private void KeyboardMovement()

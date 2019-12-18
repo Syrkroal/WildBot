@@ -21,6 +21,7 @@ public class ChangeScene : MonoBehaviour
         launchscene(staticField.scenenbr);
     }
     public void launchscene(int scene) {
+        Time.timeScale = 1f;
         switch (scene)
         {
             case 1:
@@ -28,8 +29,7 @@ public class ChangeScene : MonoBehaviour
                 staticField.actualLvl = 1;
                 break;
             case 2:
-                SceneManager.LoadScene("test1");
-                staticField.actualLvl = 2;
+                SceneManager.LoadScene("MainMenu2");
                 break;
             case 3:
                 SceneManager.LoadScene("test2");

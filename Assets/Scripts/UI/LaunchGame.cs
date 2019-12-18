@@ -19,7 +19,8 @@ public class LaunchGame : MonoBehaviour
         if (staticField.isLaunching && offset < 100) {
             offset++;
         } else if (staticField.isLaunching) {
-            SceneManager.LoadScene("SampleScene");
+            staticField.isLaunching = false;
+            SceneManager.LoadScene("SpawnerTest");
         }
     }
 }

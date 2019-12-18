@@ -10,6 +10,8 @@ public class PlayerManager : MonoBehaviour
     public float point = 0;
     public List<AudioClip> sounds =  new List<AudioClip>();
 
+    public GameObject deathCanvas;
+
     private AudioSource sound;
 
     void Start()
@@ -20,7 +22,12 @@ public class PlayerManager : MonoBehaviour
 
     void Update()
     {
-
+        if (currentLife <= 0) {
+            // Time.timeScale = 0f;
+            deathCanvas.SetActive(true);
+            Cursor.visible = true;
+            transform.GetComponent<PlayerControl>().isPaused = true;
+        }
     }
 
     void OnTriggerEnter(Collider collision)

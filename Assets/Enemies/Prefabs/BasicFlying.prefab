@@ -153,6 +153,8 @@ MonoBehaviour:
   hasDeathAnim: 0
   hitMaterial: {fileID: 0}
   explosion: {fileID: 0}
+  sounds:
+  - {fileID: 8300000, guid: 7dafcb72466da454c9fd163893201499, type: 3}
 --- !u!135 &8748163370415333273
 SphereCollider:
   m_ObjectHideFlags: 0
