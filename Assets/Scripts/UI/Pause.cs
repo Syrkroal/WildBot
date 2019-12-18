@@ -27,15 +27,17 @@ public class Pause  : MonoBehaviour
         Debug.Log("toto");
         Time.timeScale = 1f;
         canvas.SetActive(false);
+        Cursor.visible = false;
         player.GetComponent<PlayerControl>().isPaused = true;
         
     }
 
     public void exit() {
+        Cursor.visible = true;
         Time.timeScale = 1f;
         canvas.SetActive(false);
         player.GetComponent<PlayerControl>().isPaused = false;
-        SceneManager.LoadScene("MenuPause");
+        SceneManager.LoadScene("MainMenu2");
     }
     bool togglePause()
      {
@@ -45,10 +47,12 @@ public class Pause  : MonoBehaviour
              Time.timeScale = 1f;
              canvas.SetActive(false);
              player.GetComponent<PlayerControl>().isPaused = false;
+            Cursor.visible = false;
              return(false);
          }
          else
          {
+             Cursor.visible = true;
             Debug.Log("off");
             canvas.SetActive(true);
             Time.timeScale = 0f;

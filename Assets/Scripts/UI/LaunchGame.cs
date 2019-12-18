@@ -23,4 +23,8 @@ public class LaunchGame : MonoBehaviour
         //     SceneManager.LoadScene("SpawnerTest");
         // }
     }
+
+    public void exit (){
+        Application.Quit();
+    }
 }

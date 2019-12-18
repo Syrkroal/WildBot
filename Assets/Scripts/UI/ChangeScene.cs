@@ -25,7 +25,7 @@ public class ChangeScene : MonoBehaviour
         switch (scene)
         {
             case 1:
-                SceneManager.LoadScene("SampleScene");
+                SceneManager.LoadScene("SpawnerTest");
                 staticField.actualLvl = 1;
                 break;
             case 2:
