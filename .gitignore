@@ -52,3 +52,4 @@ sysinfo.txt
 *.apk
 *.unitypackage
 .vscode/settings.json
+.idea/
