@@ -22,7 +22,6 @@ public class Drops : MonoBehaviour
                     float rand = Random.Range(0, 100);
                     if (rand < item.rate)
                     {
-
                         if (transform.position.y < height)
                             Instantiate(items[i], new Vector3(transform.position.x, height, transform.position.z), Quaternion.identity);
                         else
