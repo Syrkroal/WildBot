@@ -16,11 +16,11 @@ public class LaunchGame : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (staticField.isLaunching && offset < 100) {
-            offset++;
-        } else if (staticField.isLaunching) {
-            staticField.isLaunching = false;
-            SceneManager.LoadScene("SpawnerTest");
-        }
+        // if (staticField.isLaunching && offset < 100) {
+        //     offset++;
+        // } else if (staticField.isLaunching) {
+        //     staticField.isLaunching = false;
+        //     SceneManager.LoadScene("SpawnerTest");
+        // }
     }
 }

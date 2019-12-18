@@ -32,7 +32,7 @@ public class ChangeScene : MonoBehaviour
                 SceneManager.LoadScene("MainMenu2");
                 break;
             case 3:
-                SceneManager.LoadScene("test2");
+                SceneManager.LoadScene("Space Base");
                 staticField.actualLvl = 3;
                 break;
             case 4:

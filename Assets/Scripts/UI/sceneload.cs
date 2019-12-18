@@ -17,7 +17,7 @@ public class sceneload : MonoBehaviour
         
     }
 
-    public void LoadScene() {
-        staticField.scenenbr = index;
+    public void LoadScene(int nbr) {
+        staticField.scenenbr = nbr;
     }
 }
