@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -15,6 +16,8 @@ public class Swarm : MonoBehaviour
     public int swarmCount = 20;
     public int basePower = 5;
     public int AddPower = 5;
+    public Text tt;
+    private int wave;
     private int wavePower;
     public EnemyType[] enemyType;
     private List<GameObject> currentEnemies = new List<GameObject>();
@@ -31,6 +34,7 @@ public class Swarm : MonoBehaviour
                 enemiesMinPower = enemy.power;
         }
         CreateWave();
+        wave = 1;
     }
 
     void FixedUpdate()
@@ -43,8 +47,12 @@ public class Swarm : MonoBehaviour
                 currentEnemies.Remove(enemy);
             }
         }
-        if (currentEnemies.Count == 0)
+        if (currentEnemies.Count == 0) {
+            tt.text = "WAVE N°" + wave;
+            wave++;
             CreateWave();
+        }
+            
     }
 
     public void CreateWave() {
