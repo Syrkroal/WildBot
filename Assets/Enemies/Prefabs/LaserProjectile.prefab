@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 8639552706919114746}
   - component: {fileID: 3464002371209963470}
   - component: {fileID: -1478897040218230134}
+  - component: {fileID: 1987730600440081316}
   m_Layer: 0
   m_Name: LaserProjectile
   m_TagString: Untagged
@@ -191,3 +192,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!136 &1987730600440081316
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1526491594559869404}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 3.4162834
+  m_Height: 73.91159
+  m_Direction: 2
+  m_Center: {x: 0, y: -0.20793347, z: 24.631334}

@@ -11,6 +11,8 @@ public class FlyingMovement : MonoBehaviour
     public float range = 5;
     public float attackRange = 1;
     public float rotationSpeed = 0.2f;
+    public float minHeight = 6;
+
     private EnemyAttack attack;
     private Vector3 initialPos;
     private float rotStep;
@@ -26,6 +28,7 @@ public class FlyingMovement : MonoBehaviour
     private BoxCollider boxCollider;
     public LayerMask mLayerMask;
     private Vector3 stirDir;
+    private bool animationIsPlaying = false;
 
     void Start () {
         boxCollider = GetComponentInChildren<BoxCollider>();
@@ -34,21 +37,29 @@ public class FlyingMovement : MonoBehaviour
         myTransform = transform;
         initialPos = myTransform.position;
         moveStep = speed * Time.deltaTime;
+        anim = GetComponentInChildren<Animator>();
+        health = GetComponentInChildren<EnemyHealth>();
+        childTransform = transform.GetChild(0);
         rotStep = rotationSpeed * Time.deltaTime;
+        if (!player)
+        {
+            player = GameObject.FindWithTag("Player").transform;
+        }
     }
     void FixedUpdate() {
         if (health.healthPoints <= 0)
             Destroy(gameObject);
         else
             AIMovement();
-
     }
 
     private IEnumerator PlayAnimation(string animName)
     {
         anim.Play(animName, 0);
         yield return new WaitForEndOfFrame();
+        animationIsPlaying = true;
         yield return new WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length);
+        animationIsPlaying = false;
     }
 
     private void ReturnToPos() {
@@ -90,8 +101,15 @@ public class FlyingMovement : MonoBehaviour
     }
 
     private void AIMovement () {
+        if (Time.time > nextRoll)
+        {
+            float randTime = Random.Range(minBarrelRollRate, maxBarrelRollRate);
+            nextRoll = Time.time + randTime;
+            StartCoroutine(PlayAnimation("BarrelRoll"));
+        }
         float distance = Vector3.Distance(myTransform.position, player.position);
         int playerDirection = (int)(player.position.x - myTransform.position.x);
+        
         if (distance <= range) {
             Vector3 direction = player.position - myTransform.position;
             RaycastHit hit;
@@ -104,16 +122,16 @@ public class FlyingMovement : MonoBehaviour
                     Debug.DrawRay(transform.position, direction * hit.distance, Color.red);
                     if (distance > attackRange) {
                         myTransform.position = Vector3.MoveTowards(myTransform.position, player.position, moveStep);
+                        if (myTransform.position.y < minHeight)
+                            myTransform.position = new Vector3(myTransform.position.x, minHeight, myTransform.position.z);
                     } else
-                        attack.Fire(player.position - myTransform.position, myTransform.position);
+                        attack.Fire(player.position - childTransform.position, childTransform.position);
                 }
                 else {
                     Debug.DrawRay(transform.position, direction * 50, Color.blue);
-                    ReturnToPos();
                 }
             }
-        } else
-            ReturnToPos();
+        }
         CheckCollisionOverlap();
     }
 }

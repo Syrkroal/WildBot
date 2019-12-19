@@ -24,13 +24,11 @@ public class Projectile : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player")) {
-            PlayerHealth stat = other.gameObject.GetComponent<PlayerHealth>();
+            PlayerManager stat = other.gameObject.GetComponent<PlayerManager>();
             if (stat)
-            {
-                stat.TakeDamage(1);
-            }
+                stat.hitPlayer(1);
         }
-        if (other.gameObject.CompareTag("Wall") || other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Wall") || other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Ground"))
             Destroy(gameObject);
     }
 
