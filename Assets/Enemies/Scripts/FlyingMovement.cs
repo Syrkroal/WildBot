@@ -10,7 +10,6 @@ public class FlyingMovement : MonoBehaviour
     private Transform myTransform;
     public float range = 5;
     public float attackRange = 1;
-    public float minHeight = 6;
     public float rotationSpeed = 0.2f;
     private EnemyAttack attack;
     private Vector3 initialPos;
@@ -35,14 +34,7 @@ public class FlyingMovement : MonoBehaviour
         myTransform = transform;
         initialPos = myTransform.position;
         moveStep = speed * Time.deltaTime;
-        anim = GetComponentInChildren<Animator>();
-        health = GetComponentInChildren<EnemyHealth>();
-        childTransform = transform.GetChild(0);
         rotStep = rotationSpeed * Time.deltaTime;
-        if (!player)
-        {
-            player = GameObject.FindWithTag("Player").transform;
-        }
     }
     void FixedUpdate() {
         if (health.healthPoints <= 0)
@@ -98,12 +90,6 @@ public class FlyingMovement : MonoBehaviour
     }
 
     private void AIMovement () {
-        if (Time.time > nextRoll)
-        {
-            float randTime = Random.Range(minBarrelRollRate, maxBarrelRollRate);
-            nextRoll = Time.time + randTime;
-            StartCoroutine(PlayAnimation("BarrelRoll"));
-        }
         float distance = Vector3.Distance(myTransform.position, player.position);
         int playerDirection = (int)(player.position.x - myTransform.position.x);
         if (distance <= range) {
@@ -118,14 +104,12 @@ public class FlyingMovement : MonoBehaviour
                     Debug.DrawRay(transform.position, direction * hit.distance, Color.red);
                     if (distance > attackRange) {
                         myTransform.position = Vector3.MoveTowards(myTransform.position, player.position, moveStep);
-                        if (myTransform.position.y < minHeight)
-                            myTransform.position = new Vector3(myTransform.position.x, minHeight, myTransform.position.z);
                     } else
-                        attack.Fire(player.position - childTransform.position, childTransform.position);
+                        attack.Fire(player.position - myTransform.position, myTransform.position);
                 }
                 else {
                     Debug.DrawRay(transform.position, direction * 50, Color.blue);
-                    // ReturnToPos();
+                    ReturnToPos();
                 }
             }
         } else

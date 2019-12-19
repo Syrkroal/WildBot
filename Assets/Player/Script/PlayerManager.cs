@@ -8,16 +8,26 @@ public class PlayerManager : MonoBehaviour
     public int maxLife = 10;
     public int ammo = 100;
     public float point = 0;
+    public List<AudioClip> sounds =  new List<AudioClip>();
+    public GameObject deathCanvas;
+    private AudioSource sound;
     private Rigidbody rb;
 
     void Start()
     {
         point = 0;
+        sound = transform.GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody>();
     }
 
     void Update()
     {
+        if (currentLife <= 0) {
+            // Time.timeScale = 0f;
+            deathCanvas.SetActive(true);
+            Cursor.visible = true;
+            transform.GetComponent<PlayerControl>().isPaused = true;
+        }
     }
 
     void OnTriggerEnter(Collider collision)
@@ -40,6 +50,7 @@ public class PlayerManager : MonoBehaviour
             EnemyAttack attack = collision.gameObject.transform.root.GetComponent<EnemyAttack>();
             if (attack && attack.canDeal)
             {
+                sound.PlayOneShot(sounds[0]);
                 hitPlayer(attack.damage);
                 attack.canDeal = false;
             }

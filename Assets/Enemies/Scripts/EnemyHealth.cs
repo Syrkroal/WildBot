@@ -10,10 +10,13 @@ public class EnemyHealth : MonoBehaviour
     public Material hitMaterial;
     public float extraDeathTime = 0;
     public GameObject explosion;
+
+    public List<AudioClip> sounds = new List<AudioClip>();
     private Animator anim;
     private Material oldMaterial;
     private bool takingDamage = false;
     private SkinnedMeshRenderer childRenderer;
+    private AudioSource sound;
 
     void Start() {
         anim = GetComponent<Animator>();

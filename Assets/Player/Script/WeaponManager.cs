@@ -1,4 +1,7 @@
 ﻿using UnityEngine;
+using System.IO;
+using System.Collections;
+using System.Collections.Generic;
 
 public class WeaponManager : MonoBehaviour
 {
@@ -19,10 +22,14 @@ public class WeaponManager : MonoBehaviour
     public int loaderSize = 20;
     public float damage = 10.0f;
     public float headshotMultiplier = 2.5f;
-    private int bulletInLoader;
+    public int bulletInLoader;
+
+
     public float lockViewSpeed = 1.5f;
     public float PreciseView = 10;
+    public List<AudioClip> sounds =  new List<AudioClip>();
 
+    private AudioSource sound;
     private Animator anim;
     private AnimationClip [] clips;
     private float loadingTime;
@@ -35,6 +42,7 @@ public class WeaponManager : MonoBehaviour
         bulletInLoader = loaderSize;
         damage = 10.0f;
         print(damage);
+        sound = transform.GetComponent<AudioSource>();
         anim = childWeapon.GetComponent<Animator>();
         clips = anim.runtimeAnimatorController.animationClips;
         loadingTime = clips[0].length;
@@ -53,6 +61,7 @@ public class WeaponManager : MonoBehaviour
             loadingtimeLeft = loadingTime + Time.time;
             transform.GetComponent<PlayerManager>().reload(loaderSize, bulletInLoader);
             bulletInLoader = loaderSize;
+            sound.PlayOneShot(sounds[1]);
             childWeapon.GetComponent<Animator>().Play("reloadAnim", 0);
         }
         replaceWeapon();
@@ -91,6 +100,7 @@ public class WeaponManager : MonoBehaviour
             bulletInLoader = transform.GetComponent<PlayerManager>().shootAmmo(bulletInLoader);
             if (bulletInLoader > 0)
             {
+                sound.PlayOneShot(sounds[0]);
                 nextFire = Time.time + fireRate;
                 GameObject go = Instantiate(projectile, spawnPos, Quaternion.identity);
                 go.GetComponent<ProjectilePlayer>().setDirection(direction);
